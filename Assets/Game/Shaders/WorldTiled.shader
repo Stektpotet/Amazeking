@@ -20,7 +20,7 @@
 		}
 		LOD 500
 		Cull Off
-		Lighting Off
+		Lighting On
 		ZWrite Off
 		Blend One OneMinusSrcAlpha
 
@@ -29,10 +29,12 @@
 #pragma multi_compile _ PIXELSNAP_ON
 #pragma multi_compile _ ETC1_EXTERNAL_ALPHA
 
+#pragma target 3.0
 		sampler2D _MainTex;
 		fixed4 _Color;
 		sampler2D _AlphaTex;
 		sampler2D _BumpMap;
+		float4 _MainTex_TexelSize;
 	struct Input
 	{
 		float2 worldPos;
@@ -46,7 +48,7 @@
 #endif
 		UNITY_INITIALIZE_OUTPUT(Input, o);
 		o.color = v.color * _Color;
-		o.worldPos = v.vertex;
+		o.worldPos = v.vertex.xy;
 	}
 
 	fixed4 SampleSpriteTexture(float2 uv)
@@ -62,7 +64,7 @@
 
 	void surf(Input IN, inout SurfaceOutput o)
 	{
-		float2 uv = IN.worldPos*0.25;
+		float2 uv = IN.worldPos * 16 * _MainTex_TexelSize.xy;
 
 		fixed4 c = SampleSpriteTexture(uv) * IN.color;
 		o.Albedo = c.rgb * c.a;
