@@ -28,6 +28,11 @@ public class PlayerController : MonoBehaviour
 
 	void Update()
 	{
+
+		anim.SetBool("Grounded", grounded);
+		anim.SetFloat("Speed", Mathf.Abs(body.velocity.x));
+		anim.SetFloat("VelocityY", body.velocity.y);
+
 		Movement();
 	}
 
@@ -51,8 +56,6 @@ public class PlayerController : MonoBehaviour
 
 		float move = Input.GetAxis("Horizontal");
 
-		anim.SetFloat("Speed", Mathf.Abs(move));
-
 		body.velocity = new Vector2(move * maxSpeed, body.velocity.y);
 
 		if(move < 0 && facingRight || move > 0 && !facingRight)
@@ -60,6 +63,8 @@ public class PlayerController : MonoBehaviour
 			Flip();
 		}
 	}
+
+	//flip the sprite
     void Flip()
 	{
 		facingRight = !facingRight;
