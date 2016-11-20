@@ -23,8 +23,7 @@ public class AlphaBrushWindow : EditorWindow
 	}
 
 	Projector brushProjector;
-
-	[MenuItem("Window/AlphaBrush")]
+	
 	public static void Initialize()
 	{
 		AlphaBrushWindow window = GetWindow<AlphaBrushWindow>(true, "AlphaBrush");
