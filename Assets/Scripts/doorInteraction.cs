@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class DoorInteraction : MonoBehaviour {
     bool inTrigger = false;
+
 	// Use this for initialization
 	void Start () {
 	    
@@ -11,12 +12,20 @@ public class DoorInteraction : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        Scene activeScene = SceneManager.GetActiveScene();
 
         if (inTrigger)
         {
             if (Input.GetKeyDown(KeyCode.E))      //If pressed -goto next room:
             {
-                SceneManager.LoadSceneAsync("level2");
+                if (activeScene == SceneManager.GetSceneByName("level1"))
+                {
+                    SceneManager.LoadSceneAsync("level2");
+                }
+                else
+                {
+                    SceneManager.LoadSceneAsync("level3");
+                }
                 Debug.Log("Try to open door");
             }
         }
