@@ -2,39 +2,59 @@
 {
 	Properties
 	{
-		_MainTex("Sprite Texture", 2D) = "white" {}
-		_Color("Tint", Color) = (1,1,1,1)
-		_BumpMap("Normalmap", 2D) = "bump" {}
-		[MaterialToggle] PixelSnap("Pixel snap", Float) = 0
+		[Header(Main Textures)]
+	[NoScaleOffset][PerRendererData] _MainTex("Sprite Texture", 2D) = "white" {}
+	[NoScaleOffset][Normal] _BumpMap("Normalmap (RGB)", 2D) = "bump" {}
+	[PerRendererData] _Color("Tint", Color) = (1,1,1,1)
+		[Space(20)]
+	[Header(Blending)]
+	[NoScaleOffset] _BlendTex1("Blend Red", 2D) = "black" {}
+	[NoScaleOffset] _BlendTex2("Blend Green", 2D) = "black" {}
+	[NoScaleOffset] _BlendTex3("Blend Blue", 2D) = "black" {}
+	[NoScaleOffset] _BlendTex4("Blend Alpha", 2D) = "black" {}
+	[PerRendererData] _BlendMask("BlendMask", 2D) = "black" {}
+	[NoScaleOffset][Normal] _BumpMap1("Normalmap Red", 2D) = "" {}
+	[NoScaleOffset][Normal] _BumpMap2("Normalmap Green", 2D) = ""{}
+	[NoScaleOffset][Normal] _BumpMap3("Normalmap Blue", 2D) = "" {}
+	[NoScaleOffset][Normal] _BumpMap4("Normalmap Alpha", 2D) = "" {}
+	[MaterialToggle] PixelSnap("Pixel snap", Float) = 0
 	}
 
 		SubShader
-		{
+	{
 		Tags
-		{
-			"Queue" = "Transparent"
-			"RenderType" = "Transparent"
-		}
+	{
+		"Queue" = "Geometry"
+		"RenderType" = "TransparentCutout"
+		"PreviewType" = "Plane"
+	}
 		LOD 500
 		Cull Off
-		Lighting On
-		ZWrite Off
-		Blend One OneMinusSrcAlpha
 
 		CGPROGRAM
-#pragma surface surf Lambert vertex:vert nofog keepalpha
+#pragma surface surf Lambert vertex:vert addshadow fullforwardshadows
 #pragma multi_compile _ PIXELSNAP_ON
-#pragma multi_compile _ ETC1_EXTERNAL_ALPHA
-
 #pragma target 3.0
+
 		sampler2D _MainTex;
-		fixed4 _Color;
-		sampler2D _AlphaTex;
-		sampler2D _BumpMap;
-		float4 _MainTex_TexelSize;
+	sampler2D _BlendTex1;
+	sampler2D _BlendTex2;
+	sampler2D _BlendTex3;
+	sampler2D _BlendTex4;
+	sampler2D _BlendMask;
+	fixed4 _Color;
+	sampler2D _AlphaTex;
+	sampler2D _BumpMap;
+	sampler2D _BumpMap1;
+	sampler2D _BumpMap2;
+	sampler2D _BumpMap3;
+	sampler2D _BumpMap4;
+	float4 _MainTex_TexelSize;
+
 	struct Input
 	{
 		float2 worldPos;
+		float2 uv_MainTex;
 		fixed4 color;
 	};
 
@@ -44,29 +64,49 @@
 		v.vertex = UnityPixelSnap(v.vertex);
 #endif
 		UNITY_INITIALIZE_OUTPUT(Input, o);
-		o.color = v.color * _Color;
+		o.color = v.color;
 		o.worldPos = v.vertex.xy;
+		o.uv_MainTex = v.texcoord.xy;
 	}
 
-	fixed4 SampleSpriteTexture(float2 uv)
+	fixed4 Blend(fixed4 c, fixed mask, fixed4 blendTex)
 	{
-		fixed4 color = tex2D(_MainTex, uv);
-
-#if ETC1_EXTERNAL_ALPHA
-		color.a = tex2D(_AlphaTex, uv).r;
-#endif //ETC1_EXTERNAL_ALPHA
-
-		return color;
+		return c * (1 - mask*blendTex.a) + blendTex * mask * blendTex.a;
 	}
 
 	void surf(Input IN, inout SurfaceOutput o)
 	{
 		float2 uv = IN.worldPos * 16 * _MainTex_TexelSize.xy;
 
-		fixed4 c = SampleSpriteTexture(uv) * IN.color;
+		fixed4 c = tex2D(_MainTex, uv) * IN.color;
+		fixed4 blendMask = tex2D(_BlendMask, IN.uv_MainTex);
+		fixed4 blendTex1 = tex2D(_BlendTex1, uv);
+		fixed4 blendTex2 = tex2D(_BlendTex2, uv);
+		fixed4 blendTex3 = tex2D(_BlendTex3, uv);
+		fixed4 blendTex4 = tex2D(_BlendTex4, uv);
+
+		fixed4 bump = tex2D(_BumpMap, uv);
+		fixed4 bumpTex1 = tex2D(_BumpMap1, uv);
+		fixed4 bumpTex2 = tex2D(_BumpMap2, uv);
+		fixed4 bumpTex3 = tex2D(_BumpMap3, uv);
+		fixed4 bumpTex4 = tex2D(_BumpMap4, uv);
+
+
+		c = Blend(c, blendMask.r, blendTex1);
+		c = Blend(c, blendMask.g, blendTex2);
+		c = Blend(c, blendMask.b, blendTex3);
+		c = Blend(c, blendMask.a, blendTex4);
+
+		c *= _Color;
+
+		bump = Blend(bump, blendMask.r*blendTex1.a, bumpTex1);
+		bump = Blend(bump, blendMask.g*blendTex2.a, bumpTex2);
+		bump = Blend(bump, blendMask.b*blendTex3.a, bumpTex3);
+		bump = Blend(bump, blendMask.a*blendTex4.a, bumpTex4);
+
+		o.Normal = UnpackNormal(bump);
 		o.Albedo = c.rgb * c.a;
 		o.Alpha = c.a;
-		o.Normal = UnpackNormal(tex2D(_BumpMap, uv));
 	}
 	ENDCG
 	}
