@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 4b0be6a17a9c1324c804f949090419d7
-timeCreated: 1479231370
+timeCreated: 1479938619
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -48,38 +48,32 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 16
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    serializedVersion: 2
     sprites:
-    - serializedVersion: 2
-      name: dorer_0
+    - name: dorer_0
       rect:
         serializedVersion: 2
         x: 6
         y: 0
         width: 6
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 8
+      pivot: {x: 1, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: dorer_1
+    - name: dorer_1
       rect:
         serializedVersion: 2
         x: 19
         y: 0
         width: 6
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 8
+      pivot: {x: 1, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 

@@ -3,7 +3,7 @@
 	Properties 
 	{
 		_Color ("Color", Color) = (1,1,1,1)
-		_MainTex ("Albedo (RGBA)", 2D) = "white" {}
+		[PerRendererData] _MainTex ("Albedo (RGBA)", 2D) = "white" {}
 		_BumpMap("Normalmap(RGB) + Cutout (A)", 2D) = "bump" {}
 		_SkyTex ("Sky Texture (RGBA)", 2D) = "white" {}
 		_SkyColor ("Sky Color", Color) = (1,1,1,1)
@@ -16,7 +16,7 @@
 		{
 			"Queue" = "Transparent"
 			"IgnoreProjector" = "True"
-			"RenderType" = "Transparent"
+			"RenderType" = "TransparentCutout"
 			"PreviewType" = "Plane"
 			"CanUseSpriteAtlas" = "True"
 		}

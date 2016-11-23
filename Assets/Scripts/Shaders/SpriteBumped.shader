@@ -3,7 +3,7 @@
 	Properties
 	{
 		[PerRendererData] _MainTex("Sprite Texture", 2D) = "white" {}
-		_Color("Tint", Color) = (1,1,1,1)
+		[PerRendererData] _Color("Tint", Color) = (1,1,1,1)
 		_BumpMap("Normalmap", 2D) = "bump" {}
 		[MaterialToggle] PixelSnap("Pixel snap", Float) = 0
 	}
@@ -13,18 +13,18 @@
 		Tags
 	{
 		"Queue" = "Geometry"
-		"RenderType" = "Opaque"
+		"RenderType" = "TransparentCutout"
+		"PreviewType" = "Plane"
 	}
-		LOD 500
+			LOD 500
+			Cull Off
 
 		CGPROGRAM
-#pragma surface surf Lambert vertex:vert nofog keepalpha
+#pragma surface surf Lambert vertex:vert addshadow fullforwardshadows
 #pragma multi_compile _ PIXELSNAP_ON
-#pragma multi_compile _ ETC1_EXTERNAL_ALPHA
 
-#pragma target 3.0
+#pragma target 3.0 
 	sampler2D _MainTex;
-	sampler2D _AlphaTex;
 	sampler2D _BumpMap;
 	fixed4	  _Color;
 
