@@ -1,46 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System;
 
-public class DoorInteraction : MonoBehaviour {
+public class DoorInteraction : InteractionBase {
 
-	bool inTrigger = false;
+	public ListeMannInteraction waitForInteraction;
 
-	public ListeMannInteraction interaction;
-	
-	// Update is called once per frame
-	void Update () {
-        Scene activeScene = SceneManager.GetActiveScene();
-
-        if (inTrigger)
-        {
-            if (Input.GetKeyDown(KeyCode.E))     
-            {
-				if(interaction.ListeMannInteracted)
-				{
-					SceneManager.LoadSceneAsync("level2");
-				}
-				else
-				{
-					Debug.Log("You have not talked to ListeMann yet!");
-				}
-            }
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.tag == "Player")
-        {
-            inTrigger = true;
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.tag == "Player")
-        {
-            inTrigger = false;
-        }
+	protected override void Interaction()
+	{
+		if(waitForInteraction.interacted)
+		{
+			SceneManager.LoadSceneAsync("level2");
+		}
+		else
+		{
+			Debug.Log("You have not talked to ListeMann yet!");
+		}
     }
 }
