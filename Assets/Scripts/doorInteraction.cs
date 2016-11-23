@@ -16,17 +16,23 @@ public class DoorInteraction : MonoBehaviour {
 
         if (inTrigger)
         {
-            if (Input.GetKeyDown(KeyCode.E))      //If pressed -goto next room:
+            if (Input.GetKeyDown(KeyCode.E))     
             {
                 if (activeScene == SceneManager.GetSceneByName("level1"))
                 {
-                    SceneManager.LoadSceneAsync("level2");
+                    if (GameObject.Find("ListeMannTrigger").GetComponent<ListeMannInteraction>().ListeMannInteracted)
+                    {
+                        SceneManager.LoadSceneAsync("level2");
+                    }
+                    else 
+                    {
+                        Debug.Log("You have not talked to ListeMann yet!");
+                    }
                 }
                 else
                 {
                     SceneManager.LoadSceneAsync("level3");
                 }
-                Debug.Log("Try to open door");
             }
         }
 
