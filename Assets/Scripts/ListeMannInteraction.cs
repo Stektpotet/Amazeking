@@ -1,8 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
-
-public class ListeMannInteraction : InteractionBase
+﻿using UnityEngine; public class ListeMannInteraction : InteractionBase
 {
 	protected override void Interaction()
 	{
