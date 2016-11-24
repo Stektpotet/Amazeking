@@ -21,7 +21,6 @@ public class PaintedMask : MonoBehaviour
 		set { m_maskTex = value; }
 	}
 
-	[SerializeField]
 	public MaterialPropertyBlock m_propBlock;
 
 	SpriteRenderer m_renderer;
@@ -58,7 +57,7 @@ public class PaintedMask : MonoBehaviour
 	void OnEnable()
 	{
 		m_propBlock = new MaterialPropertyBlock();
-		m_propBlock.SetTexture("_BlendMask", maskTex);
+		m_propBlock.SetTexture("_BlendMask", m_maskTex);
 		spriteRenderer.SetPropertyBlock(m_propBlock);
 		spriteRenderer.sprite.texture.wrapMode = TextureWrapMode.Repeat;
 		spriteRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
@@ -84,10 +83,7 @@ public class PaintedMask : MonoBehaviour
 	
 	public void Paint(Vector2 pos)
 	{
-		Vector2 size = new Vector2(
-			Mathf.RoundToInt(transform.localScale.x * spriteRenderer.sprite.bounds.size.x),
-			Mathf.RoundToInt(transform.localScale.y * spriteRenderer.sprite.bounds.size.y));
-		Vector2 texPos = ( pos - (Vector2)transform.position + size * 0.5f) * resolutionMultiplier;
+		Vector2 texPos = ( pos - (Vector2)transform.position) * resolutionMultiplier;
 		Circle(Mathf.RoundToInt(texPos.x), Mathf.RoundToInt(texPos.y), brushSize, GetColor(color));
 		maskTex.Apply();
 		m_propBlock.Clear();

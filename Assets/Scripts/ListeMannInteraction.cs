@@ -1,4 +1,5 @@
-﻿using UnityEngine; public class ListeMannInteraction : InteractionBase
+﻿using UnityEngine;
+public class ListeMannInteraction : ScriptableInteraction
 {
 	protected override void Interaction()
 	{

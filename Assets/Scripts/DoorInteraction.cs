@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.SceneManagement;
-using System;
 
-public class DoorInteraction : InteractionBase {
+public class DoorInteraction : ScriptableInteraction {
 
-	public ListeMannInteraction waitForInteraction;
+	public InteractionBase waitForInteraction;
 
 	protected override void Interaction()
 	{

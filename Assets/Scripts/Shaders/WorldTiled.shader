@@ -13,10 +13,10 @@
 	[NoScaleOffset] _BlendTex3("Blend Blue", 2D) = "black" {}
 	[NoScaleOffset] _BlendTex4("Blend Alpha", 2D) = "black" {}
 	[PerRendererData] _BlendMask("BlendMask", 2D) = "black" {}
-	[NoScaleOffset][Normal] _BumpMap1("Normalmap Red", 2D) = "" {}
-	[NoScaleOffset][Normal] _BumpMap2("Normalmap Green", 2D) = ""{}
-	[NoScaleOffset][Normal] _BumpMap3("Normalmap Blue", 2D) = "" {}
-	[NoScaleOffset][Normal] _BumpMap4("Normalmap Alpha", 2D) = "" {}
+	[NoScaleOffset][Normal] _BumpMap1("Normalmap Red", 2D) = "bump" {}
+	[NoScaleOffset][Normal] _BumpMap2("Normalmap Green", 2D) = "bump"{}
+	[NoScaleOffset][Normal] _BumpMap3("Normalmap Blue", 2D) = "bump" {}
+	[NoScaleOffset][Normal] _BumpMap4("Normalmap Alpha", 2D) = "bump" {}
 	[MaterialToggle] PixelSnap("Pixel snap", Float) = 0
 	}
 
