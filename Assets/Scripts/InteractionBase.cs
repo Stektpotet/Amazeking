@@ -42,8 +42,6 @@ public class InteractionBase : MonoBehaviour
 }
 public abstract class ScriptableInteraction : InteractionBase
 {
-    
-   
 
     protected UnityAction scriptedInteraction;
 
