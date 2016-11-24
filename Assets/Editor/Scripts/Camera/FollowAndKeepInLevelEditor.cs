@@ -8,7 +8,6 @@ public class FollowAndKeepInLevelEditor : Editor
 
 	SerializedProperty rectProp;
 
-
 	void OnEnable()
 	{
 		followScript = target as FollowAndKeepInLevel;
@@ -18,7 +17,7 @@ public class FollowAndKeepInLevelEditor : Editor
 	void OnSceneGUI ()
 	{
 		EditorGUI.BeginChangeCheck();
-		followScript.levelBounds = HandlesUtil.ResizeRect(followScript.levelBounds, Handles.DotCap,0.25f);
+		followScript.levelBounds = HandlesUtil.ResizeRect(followScript.levelBounds, Handles.DotCap,1f);
 		if(EditorGUI.EndChangeCheck())
 		{
 			Undo.RecordObject(target, "Changed levelBounds");
@@ -32,12 +31,12 @@ public static partial class HandlesUtil
 	public static Rect ResizeRect(Rect rect, Handles.DrawCapFunction capFunc, float snap)
 	{
 		Vector2 halfRectSize = new Vector2(rect.size.x * 0.5f, rect.size.y * 0.5f);
-		Vector2[] rectangleCorners =
+		Vector3[] rectangleCorners =
 			{
 				rect.min,							// Bottom Left
                 new Vector2(rect.xMax, rect.y),	// Bottom Right
 				rect.max,							// Top Right
-                new Vector2(rect.x, rect.yMax)	// Bottom Right
+                new Vector2(rect.x, rect.yMax)	// Top Left
             };
 		Vector2[] handlePoints =
 			{
@@ -51,10 +50,10 @@ public static partial class HandlesUtil
                 new Vector2(rect.x, rect.center.y)		// Left
             };
 
-		
 
-		Handles.DrawAAPolyLine(rectangleCorners[0], rectangleCorners[1], rectangleCorners[2], rectangleCorners[3], rectangleCorners[0]);
-		//Handles.DrawAAPolyLine(handlePoints[1], handlePoints[3], handlePoints[5], handlePoints[7], handlePoints[1]);
+		Handles.Label(rectangleCorners[3]+Vector3.up, "Level Bounds");
+		Handles.DrawSolidRectangleWithOutline(rectangleCorners,Color.green*0.2f,Color.green);
+
 		for(int i = 0; i < handlePoints.Length; i++)
 		{
 			Vector2 p = handlePoints[i];
@@ -63,4 +62,9 @@ public static partial class HandlesUtil
 		return new Rect(handlePoints[3].x, handlePoints[0].y, handlePoints[1].x - handlePoints[3].x, handlePoints[2].y - handlePoints[0].y);
 		
 	}
+	
 }
+
+
+
+
