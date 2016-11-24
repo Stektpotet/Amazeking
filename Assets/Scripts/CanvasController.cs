@@ -3,9 +3,8 @@ using System.Collections;
 
 public class CanvasController : MonoBehaviour
 {
-    public Canvas messageCanvas;
     public void ToggleVisibility()
     {
-        messageCanvas.enabled = !messageCanvas.enabled;
+        gameObject.SetActive(!gameObject.activeInHierarchy);
     }
 }
