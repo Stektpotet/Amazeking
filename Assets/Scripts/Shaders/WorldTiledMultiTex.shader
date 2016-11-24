@@ -3,10 +3,11 @@
 	Properties
 	{
 	[Header(Main Textures)]
-	[NoScaleOffset] _MainTex("Sprite Texture", 2D) = "white" {}
+	[NoScaleOffset][PerRendererData] _MainTex("Sprite Texture", 2D) = "white" {}
 	[NoScaleOffset][Normal] _BumpMap("Normalmap (RGB)", 2D) = "bump" {}
 	[PerRendererData] _Color("Tint", Color) = (1,1,1,1)
 	[MaterialToggle] PixelSnap("Pixel snap", Float) = 0
+	[Toggle(VERTICAL_REPEAT)] VerticalRepeat("Repeat Vertically", Float) = 0
 	}
 
 		SubShader
@@ -26,6 +27,7 @@
 		CGPROGRAM
 #pragma surface surf Lambert vertex:vert nofog keepalpha
 #pragma multi_compile _ PIXELSNAP_ON
+#pragma multi_compile _ VERTICAL_REPEAT
 #pragma target 3.0
 
 	sampler2D _MainTex;
@@ -53,7 +55,11 @@
 
 	void surf(Input IN, inout SurfaceOutput o)
 	{
+#ifdef VERTICAL_REPEAT
+		float2 uv = float2(IN.uv_MainTex.x, (IN.worldPos * 16 * _MainTex_TexelSize).y);
+#else
 		float2 uv = float2((IN.worldPos*16*_MainTex_TexelSize).x,IN.uv_MainTex.y);
+#endif
 
 		fixed4 c = tex2D(_MainTex, uv) * IN.color;
 		c *= _Color;
