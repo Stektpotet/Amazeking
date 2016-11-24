@@ -9,7 +9,7 @@ public class InteractionBase : MonoBehaviour
 	protected bool inTrigger = false;
 	public bool interacted = false;
 
-	[SerializeField]
+    [SerializeField]
 	protected UnityEvent interactionEvent;
 
 	void Update()
@@ -42,13 +42,16 @@ public class InteractionBase : MonoBehaviour
 }
 public abstract class ScriptableInteraction : InteractionBase
 {
-	
-	protected UnityAction scriptedInteraction;
+    
+   
+
+    protected UnityAction scriptedInteraction;
 
 	protected abstract void Interaction();
 
 	public virtual void Start()
 	{
+        
 		scriptedInteraction = Interaction;
 		interactionEvent.AddListener(scriptedInteraction);
 	}
