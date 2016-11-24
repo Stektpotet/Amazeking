@@ -57,7 +57,7 @@ public class PaintedMask : MonoBehaviour
 	void OnEnable()
 	{
 		m_propBlock = new MaterialPropertyBlock();
-		m_propBlock.SetTexture("_BlendMask", m_maskTex);
+		m_propBlock.SetTexture("_BlendMask", maskTex);
 		spriteRenderer.SetPropertyBlock(m_propBlock);
 		spriteRenderer.sprite.texture.wrapMode = TextureWrapMode.Repeat;
 		spriteRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;

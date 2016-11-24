@@ -83,6 +83,7 @@ public class PaintedMaskEditor : Editor
 				case EventType.MouseDrag:
 					maskMaker.Paint(HandleUtility.GUIPointToWorldRay(e.mousePosition).origin);
 					brushProjector.transform.position = HandleUtility.GUIPointToWorldRay(e.mousePosition).origin;
+					EditorUtility.SetDirty(maskMaker);
 					Repaint();
 					e.Use();
 					break;
