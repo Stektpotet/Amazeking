@@ -5,7 +5,13 @@ using System.Collections;
 public class DoorInteraction : ScriptableInteraction {
 
 	public InteractionBase waitForInteraction;
-    Scene activeScene = SceneManager.GetActiveScene();
+	Scene activeScene;
+
+	public override void Start()
+	{
+		base.Start();
+		activeScene = SceneManager.GetActiveScene();
+	}
    
 	protected override void Interaction()
 	{               //level1 -> level2:
