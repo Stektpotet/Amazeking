@@ -10,14 +10,24 @@ public class FollowAndKeepInLevel : MonoBehaviour
 	public Vector2 offset;
 
 	public Camera cam;
-	
+
+	float camHalfWidth { get { return cam.aspect * cam.orthographicSize; } }
+
 	void Start()
 	{
 		cam = GetComponent<Camera>();
+		if(camHalfWidth*2 < levelBounds.width)
+		{
+			cam.orthographicSize = levelBounds.width*0.25f / cam.aspect;
+		}
+		if(cam.orthographicSize * 2 < levelBounds.height)
+		{
+			cam.orthographicSize = levelBounds.height * 0.5f;
+		}
 	}
 	void LateUpdate()
 	{
-		float camHalfWidth = cam.aspect * cam.orthographicSize;
+	
 		float leftDist = levelBounds.x + camHalfWidth;
 		float rightDist = levelBounds.xMax - camHalfWidth;
 		float bottomDist = levelBounds.y + cam.orthographicSize;
@@ -28,8 +38,4 @@ public class FollowAndKeepInLevel : MonoBehaviour
 		cam.transform.position = new Vector3(clampedX, clampedY, cam.transform.position.z);
 	}
 	
-	void OnValidate()
-	{
-		LateUpdate();
-	}
 }
