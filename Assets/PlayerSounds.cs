@@ -32,15 +32,19 @@ public class PlayerSounds : MonoBehaviour
 
 	public void Step()
 	{
-		PhysicsMaterial2D physMat = Physics2D.OverlapCircle(player.groundPoint.position, player.groundRadius, player.groundMask).sharedMaterial;
-        if(physMat != null)
+		Collider2D col = Physics2D.OverlapCircle(player.groundPoint.position, player.groundRadius, player.groundMask);
+		if(col != null)
 		{
-			for(int mat = 0; mat < stepSounds.Length; mat++)
+			PhysicsMaterial2D physMat = col.sharedMaterial;
+			if(physMat != null)
 			{
-				if(physMat.name == stepSounds[mat].name)
+				for(int mat = 0; mat < stepSounds.Length; mat++)
 				{
-					PlaySoundFromGroup(stepSounds[mat]);
-					return;
+					if(physMat.name == stepSounds[mat].name)
+					{
+						PlaySoundFromGroup(stepSounds[mat]);
+						return;
+					}
 				}
 			}
 		}
