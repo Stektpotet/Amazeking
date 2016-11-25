@@ -48,7 +48,6 @@ public abstract class ScriptableInteraction : InteractionBase
 
 	public virtual void Start()
 	{
-        
 		scriptedInteraction = Interaction;
 		interactionEvent.AddListener(scriptedInteraction);
 	}

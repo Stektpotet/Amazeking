@@ -3,18 +3,18 @@ guid: a196ba1e89e590347b6494d0e0ed509b
 timeCreated: 1480000653
 licenseType: Free
 TrueTypeFontImporter:
-  serializedVersion: 4
-  fontSize: 16
+  serializedVersion: 2
+  fontSize: 32
   forceTextureCase: -2
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
+  use2xBehaviour: 0
   fontNames:
-  - Thin Pixe-l7
+  - Pixels
   fallbackFontReferences: []
   customCharacters: 
-  fontRenderingMode: 0
-  ascentCalculationMode: 1
+  fontRenderingMode: 2
   userData: 
   assetBundleName: 
   assetBundleVariant: 

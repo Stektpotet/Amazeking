@@ -9,7 +9,7 @@ public class FollowAndKeepInLevel : MonoBehaviour
 	public Transform player;
 	public Vector2 offset;
 
-	public Camera cam;
+	private Camera cam;
 
 	float camHalfWidth { get { return cam.aspect * cam.orthographicSize; } }
 
