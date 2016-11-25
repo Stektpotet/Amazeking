@@ -13,7 +13,16 @@ public class FollowAndKeepInLevelEditor : Editor
 		followScript = target as FollowAndKeepInLevel;
 		rectProp = serializedObject.FindProperty("levelBounds");
 	}
-
+	public override void OnInspectorGUI()
+	{
+		base.OnInspectorGUI();
+		if(GUILayout.Button("Set Camera Size"))
+        {
+			followScript.Awake();
+			followScript.ClampCameraSize();
+			followScript.ClampCameraPos();
+		}
+	}
 	void OnSceneGUI ()
 	{
 		EditorGUI.BeginChangeCheck();

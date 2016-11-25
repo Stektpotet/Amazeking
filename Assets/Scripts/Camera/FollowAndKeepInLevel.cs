@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(Camera))]
+[RequireComponent(typeof(Camera), typeof(RectTransform))]
 public class FollowAndKeepInLevel : MonoBehaviour
 {
 	public Rect levelBounds;
@@ -13,19 +13,34 @@ public class FollowAndKeepInLevel : MonoBehaviour
 
 	float camHalfWidth { get { return cam.aspect * cam.orthographicSize; } }
 
-	void Start()
+	public void Awake()
 	{
 		cam = GetComponent<Camera>();
-		if(camHalfWidth*2 > levelBounds.width)
+	}
+
+	void Start()
+	{
+		ClampCameraSize();
+	}
+
+	void LateUpdate()
+	{
+		ClampCameraPos();
+	}
+
+	public void ClampCameraSize()
+	{
+		if(camHalfWidth * 2 > levelBounds.width)
 		{
-			cam.orthographicSize = levelBounds.width*0.25f / cam.aspect;
+			cam.orthographicSize = levelBounds.width * 0.25f / cam.aspect;
 		}
-		if(cam.orthographicSize*2 > levelBounds.height)
+		if(cam.orthographicSize * 2 > levelBounds.height)
 		{
 			cam.orthographicSize = levelBounds.height * 0.5f;
 		}
 	}
-	void LateUpdate()
+
+	public void ClampCameraPos()
 	{
 		float leftDist = levelBounds.x + camHalfWidth;
 		float rightDist = levelBounds.xMax - camHalfWidth;
@@ -36,5 +51,4 @@ public class FollowAndKeepInLevel : MonoBehaviour
 		float clampedY = Mathf.Clamp(player.transform.position.y + offset.y, bottomDist, topDist);
 		cam.transform.position = new Vector3(clampedX, clampedY, cam.transform.position.z);
 	}
-	
 }
