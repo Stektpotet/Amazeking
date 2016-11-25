@@ -27,7 +27,6 @@ public class FollowAndKeepInLevel : MonoBehaviour
 	}
 	void LateUpdate()
 	{
-	
 		float leftDist = levelBounds.x + camHalfWidth;
 		float rightDist = levelBounds.xMax - camHalfWidth;
 		float bottomDist = levelBounds.y + cam.orthographicSize;
