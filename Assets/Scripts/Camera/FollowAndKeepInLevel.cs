@@ -16,11 +16,11 @@ public class FollowAndKeepInLevel : MonoBehaviour
 	void Start()
 	{
 		cam = GetComponent<Camera>();
-		if(camHalfWidth*2 < levelBounds.width)
+		if(camHalfWidth*2 > levelBounds.width)
 		{
 			cam.orthographicSize = levelBounds.width*0.25f / cam.aspect;
 		}
-		if(cam.orthographicSize * 2 < levelBounds.height)
+		if(cam.orthographicSize*2 > levelBounds.height)
 		{
 			cam.orthographicSize = levelBounds.height * 0.5f;
 		}
