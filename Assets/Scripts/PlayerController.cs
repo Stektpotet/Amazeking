@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
 	public float maxSpeed;
 	public float jumpForce;
 
+	public float idleTime = 0;
+
 	//Components
 	Rigidbody2D body;
 	Animator anim;
@@ -24,8 +26,7 @@ public class PlayerController : MonoBehaviour
 		body = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
 	}
-
-
+	
 	void Update()
 	{
 
@@ -70,4 +71,5 @@ public class PlayerController : MonoBehaviour
 		facingRight = !facingRight;
 		GetComponent<SpriteRenderer>().flipX = !facingRight;
 	}
+
 }
