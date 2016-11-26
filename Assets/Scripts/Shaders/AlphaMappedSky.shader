@@ -2,11 +2,11 @@
 {
 	Properties 
 	{
-		_Color ("Color", Color) = (1,1,1,1)
+		_Tint ("Tint", Color) = (1,1,1,1)
 		[PerRendererData] _MainTex ("Albedo (RGBA)", 2D) = "white" {}
 		_BumpMap("Normalmap(RGB) + Cutout (A)", 2D) = "bump" {}
 		_SkyTex ("Sky Texture (RGBA)", 2D) = "white" {}
-		_SkyColor ("Sky Color", Color) = (1,1,1,1)
+		[PerRendererData] _Color ("Sky Color", Color) = (1,1,1,1)
 		[MaterialToggle] PixelSnap("Pixel snap", Float) = 0
 	}
 
@@ -38,8 +38,8 @@
 		sampler2D _SkyTex;
 		sampler2D _AlphaTex;
 		sampler2D _BumpMap;
+		fixed4 _Tint;
 		fixed4 _Color;
-		fixed4 _SkyColor;
 		float4 _SkyTex_TexelSize;
 
 		struct Input
@@ -62,12 +62,11 @@
 
 		void surf (Input IN, inout SurfaceOutput o) 
 		{
-			
 			fixed4 sky = tex2D(_SkyTex, IN.worldPos * 16 *_SkyTex_TexelSize.xy + float2(_Time.x*0.125,0)) ;
 			// Albedo comes from a texture tinted by color
-			fixed4 c = tex2D(_MainTex , IN.uv_MainTex ) * _Color ;
+			fixed4 c = tex2D(_MainTex , IN.uv_MainTex ) * _Tint ;
 			fixed cutout = step(1,tex2D(_MainTex, IN.uv_MainTex).r);
-			o.Albedo = c.rgb * (1 - cutout) + _SkyColor * cutout * (1-sky.a*_SkyColor.a) + sky.rgb*cutout*sky.a*_SkyColor.a;
+			o.Albedo = c.rgb * (1 - cutout) + _Color * cutout * (1-sky.a*_Color.a) + sky.rgb*cutout*sky.a*_Color.a;
 			o.Alpha = c.a;
 			o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_MainTex));
 		}

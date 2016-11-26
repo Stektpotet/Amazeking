@@ -17,8 +17,6 @@ public class PlayerSounds : MonoBehaviour
 	private AudioSource source;
 	private PlayerController player;
 
-
-	
 	private float idleTimer = 0, nextIdleTime;
 	private bool idle = false;
 
