@@ -42,25 +42,13 @@ public class PlayerSounds : MonoBehaviour
 				{
 					if(physMat.name == stepSounds[mat].name)
 					{
-						PlaySoundFromGroup(stepSounds[mat]);
+						stepSounds[mat].PlayRandomSound(ref source);
 						return;
 					}
 				}
 			}
 		}
-		PlaySoundFromGroup(stepSounds[0]);
-	}
-
-	void PlaySound(AudioGroup group, int i)
-	{
-		source.clip = group[i];
-		source.pitch = Random.Range(group.pitchRange.min, group.pitchRange.max);
-		source.Play();
-	}
-
-	void PlaySoundFromGroup(AudioGroup group)
-	{
-		PlaySound(group, Random.Range(0, group.Size-1));
+		stepSounds[0].PlayRandomSound(ref source);
 	}
 
 	void StartIdleTimer()
@@ -83,26 +71,9 @@ public class PlayerSounds : MonoBehaviour
 			{
 				idleTimer = 0;
 				nextIdleTime = Random.Range(idleWaitTimeMin, idleWaitTimeMax);
-				PlaySoundFromGroup(idleSounds);
+				idleSounds.PlayRandomSound(ref source);
 			}
 		}
 	}
 }
 
-[System.Serializable]
-public class AudioGroup
-{
-	public string name;
-	public PitchRange pitchRange;
-	public AudioClip[] audioClips;
-
-
-	public AudioClip this[int i] { get{ return audioClips[i]; } }
-	public int Size { get { return audioClips.Length; } }
-
-	[System.Serializable]
-	public struct PitchRange
-	{
-		public float min, max;
-	}
-}

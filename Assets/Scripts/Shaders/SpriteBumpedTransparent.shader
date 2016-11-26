@@ -1,11 +1,11 @@
-﻿Shader "Sprites/SpriteBumped"
+﻿Shader "Sprites/SpriteBumpedTransparent"
 {
 	Properties
 	{
 		[PerRendererData] _MainTex("Sprite Texture", 2D) = "white" {}
-		[PerRendererData] _Color("Tint", Color) = (1,1,1,1)
+	[PerRendererData] _Color("Tint", Color) = (1,1,1,1)
 		_BumpMap("Normalmap", 2D) = "bump" {}
-		[MaterialToggle] PixelSnap("Pixel snap", Float) = 0
+	[MaterialToggle] PixelSnap("Pixel snap", Float) = 0
 	}
 
 		SubShader
@@ -13,11 +13,16 @@
 		Tags
 	{
 		"Queue" = "Transparent"
+		"IgnoreProjector" = "True"
 		"RenderType" = "Transparent"
 		"PreviewType" = "Plane"
+		"CanUseSpriteAtlas" = "True"
 	}
-			LOD 500
-			Cull Off
+		LOD 500
+		Cull Off
+		Lighting On
+		ZWrite Off
+		Blend One OneMinusSrcAlpha
 
 		CGPROGRAM
 #pragma surface surf Lambert vertex:vert nofog keepalpha
@@ -25,7 +30,7 @@
 #pragma multi_compile _ ETC1_EXTERNAL_ALPHA
 
 #pragma target 3.0 
-	sampler2D _MainTex;
+		sampler2D _MainTex;
 	sampler2D _BumpMap;
 	fixed4	  _Color;
 	sampler2D _AlphaTex;
