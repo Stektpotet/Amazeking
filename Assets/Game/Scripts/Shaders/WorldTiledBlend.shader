@@ -1,4 +1,4 @@
-﻿Shader "Sprites/WorldTiled"
+﻿Shader "Sprites/WorldTiledBlend"
 {
 	Properties
 	{

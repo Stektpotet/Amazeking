@@ -6,12 +6,11 @@ public class FollowAndKeepInLevelEditor : Editor
 {
 	FollowAndKeepInLevel followScript;
 
-	SerializedProperty rectProp;
+
 
 	void OnEnable()
 	{
 		followScript = target as FollowAndKeepInLevel;
-		rectProp = serializedObject.FindProperty("levelBounds");
 	}
 	public override void OnInspectorGUI()
 	{
@@ -25,12 +24,16 @@ public class FollowAndKeepInLevelEditor : Editor
 	}
 	void OnSceneGUI ()
 	{
-		EditorGUI.BeginChangeCheck();
-		followScript.levelBounds = HandlesUtil.ResizeRect(followScript.levelBounds, Handles.DotCap,1f);
-		if(EditorGUI.EndChangeCheck())
+		
+		for(int i = 0; i < followScript.levelAreas.Count; i++)
 		{
-			Undo.RecordObject(target, "Changed levelBounds");
-			EditorUtility.SetDirty(followScript);
+			EditorGUI.BeginChangeCheck();
+			followScript.levelAreas[i].Set(HandlesUtil.ResizeRect(followScript.levelAreas[i].levelRect, Handles.DotCap, 1f));
+			if(EditorGUI.EndChangeCheck())
+			{
+				Undo.RecordObject(target, "Changed levelBounds");
+				EditorUtility.SetDirty(followScript);
+			}
 		}
 	}
 }
@@ -39,7 +42,6 @@ public static partial class HandlesUtil
 {
 	public static Rect ResizeRect(Rect rect, Handles.DrawCapFunction capFunc, float snap)
 	{
-		Vector2 halfRectSize = new Vector2(rect.size.x * 0.5f, rect.size.y * 0.5f);
 		Vector3[] rectangleCorners =
 			{
 				rect.min,							// Bottom Left
@@ -66,12 +68,10 @@ public static partial class HandlesUtil
 		for(int i = 0; i < handlePoints.Length; i++)
 		{
 			Vector2 p = handlePoints[i];
-			handlePoints[i] = Handles.Slider(p, p - rect.center, HandleUtility.GetHandleSize(p)*0.05f, capFunc, snap);
+			handlePoints[i] = Handles.Slider(p, p - rect.center, 0.05f, capFunc, snap);
 		}
 		return new Rect(handlePoints[3].x, handlePoints[0].y, handlePoints[1].x - handlePoints[3].x, handlePoints[2].y - handlePoints[0].y);
-		
 	}
-	
 }
 
 
