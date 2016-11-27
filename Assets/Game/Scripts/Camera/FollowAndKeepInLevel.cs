@@ -11,7 +11,7 @@ public class FollowAndKeepInLevel : MonoBehaviour
 	{
 		public int prefferedCamSize = 5;
 		public Rect levelRect;
-		
+
 		public float width { get { return levelRect.width; } set { levelRect.width = value; } }
 		public float height { get { return levelRect.height; } set { levelRect.height = value; } }
 		public float x { get { return levelRect.x; } set { levelRect.x = value; } }
@@ -39,10 +39,12 @@ public class FollowAndKeepInLevel : MonoBehaviour
 	public Vector2 offset;
 
 	private Camera cam;
+	private PixelPerfectCamera pixPerfCam;
 
 	public void Awake()
 	{
 		cam = GetComponent<Camera>();
+		pixPerfCam = GetComponent<PixelPerfectCamera>();
 	}
 
 	void Start()
@@ -53,7 +55,11 @@ public class FollowAndKeepInLevel : MonoBehaviour
 	void LateUpdate()
 	{
 		if(!transitioning)
-		{ ClampCameraPos(ClampedCameraPos(cam.orthographicSize)); }
+		{
+			ClampCameraPos(ClampedCameraPos(cam.orthographicSize));
+			pixPerfCam.CalculatePixelPerfectCameraSize();
+			pixPerfCam.UpdatePixlePerfectCamera();
+		}
 	}
 
 	public void MoveToLevelArea(int i)
@@ -71,7 +77,7 @@ public class FollowAndKeepInLevel : MonoBehaviour
 		transitioning = true;
 		float targetOrthoSize = ClampedCameraSize();
 		Vector3 target = ClampedCameraPos(targetOrthoSize);
-		while(Vector3.Distance(cam.transform.position,target) > 0.05f)
+		while(Vector3.Distance(cam.transform.position, target) > 0.05f)
 		{
 			lerpTime += Time.deltaTime;
 			target = ClampedCameraPos(targetOrthoSize);
@@ -79,6 +85,8 @@ public class FollowAndKeepInLevel : MonoBehaviour
 			cam.transform.position = Vector3.Lerp(cam.transform.position, target, interpolationCurve.Evaluate(lerpTime / interpotlationTime));
 			yield return null;
 		}
+		pixPerfCam.maxCameraHalfHeight = cam.orthographicSize;
+		pixPerfCam.maxCameraHalfWidth = cam.orthographicSize * cam.aspect;
 		transitioning = false;
 		StopCoroutine(ChangingLevelArea());
 	}

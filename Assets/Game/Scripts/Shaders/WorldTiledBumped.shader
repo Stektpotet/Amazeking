@@ -53,7 +53,7 @@
 	void surf(Input IN, inout SurfaceOutput o)
 	{
 		float2 uv = IN.worldPos * 16 * _MainTex_TexelSize.xy;
-		fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * IN.color;
+		fixed4 c = tex2D(_MainTex, uv) * IN.color;
 		c *= _Color;
 		o.Normal = UnpackNormal(tex2D(_BumpMap,uv));
 		o.Albedo = c.rgb * c.a;

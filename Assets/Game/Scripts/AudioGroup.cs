@@ -10,12 +10,12 @@ public class AudioGroup
 	public PitchRange pitchRange;
 	public AudioClip[] audioClips;
 
-
 	public AudioClip this[int i] { get { return audioClips[i]; } }
 	public int Size { get { return audioClips.Length; } }
 
 	public void PlaySound(ref AudioSource source, int i)
 	{
+		
 		source.clip = this[i];
 		source.pitch = Random.Range(pitchRange.min, pitchRange.max);
 		source.Play();

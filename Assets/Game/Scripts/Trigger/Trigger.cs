@@ -9,6 +9,7 @@ public class Trigger : MonoBehaviour
 	public UnityEvent onEnter;
 	public UnityEvent onStay;
 	public UnityEvent onExit;
+
 	public void OnTriggerEnter2D(Collider2D other)
 	{
 		if(( acceptedLayers & ( 1 << other.gameObject.layer ) ) > 0)
