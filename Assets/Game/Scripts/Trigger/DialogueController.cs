@@ -55,7 +55,18 @@ public class DialogueController : MonoBehaviour
 		}
 	}
 
-
+	public void StartDialogue(string stageName)
+	{
+		for(int i = 0; i < dialogueStages.Length; i++)
+		{
+			if(dialogueStages[i].name == stageName)
+			{
+				dialogueIndex = i;
+				StartDialogue();
+				break;
+			}
+		}
+	}
 	public void StartDialogue()
 	{
 		dialogue.onStartDialogueStage.Invoke();
