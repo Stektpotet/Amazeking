@@ -36,7 +36,7 @@ public class FollowAndKeepInLevel : MonoBehaviour
 	bool transitioning = false;
 
 	public Transform player;
-	public Vector2 offset;
+	public Vector2 focusOffset;
 
 	private Camera cam;
 	private PixelPerfectCamera pixPerfCam;
@@ -125,8 +125,8 @@ public class FollowAndKeepInLevel : MonoBehaviour
 		float bottomDist = levelAreas[m_CurrentLevelArea].y + orthoSize;
 		float topDist = levelAreas[m_CurrentLevelArea].yMax - orthoSize;
 
-		float clampedX = Mathf.Clamp(player.transform.position.x + offset.x, leftDist, rightDist);
-		float clampedY = Mathf.Clamp(player.transform.position.y + offset.y, bottomDist, topDist);
+		float clampedX = Mathf.Clamp(player.transform.position.x + focusOffset.x, leftDist, rightDist);
+		float clampedY = Mathf.Clamp(player.transform.position.y + focusOffset.y, bottomDist, topDist);
 		return new Vector3(clampedX, clampedY, cam.transform.position.z);
 	}
 }

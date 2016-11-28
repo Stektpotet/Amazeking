@@ -14,7 +14,7 @@ public class InteractionBase : MonoBehaviour
 
 	void Update()
 	{
-		if(inTrigger)
+		if(inTrigger && !interacted)
 		{
 			if(Input.GetKeyDown(KeyCode.E))
 			{
@@ -50,33 +50,5 @@ public abstract class ScriptableInteraction : InteractionBase
 	{
 		scriptedInteraction = Interaction;
 		interactionEvent.AddListener(scriptedInteraction);
-	}
-
-	void Update()
-	{
-		if(inTrigger)
-		{
-			if(Input.GetKeyDown(KeyCode.E))
-			{
-				interacted = true;
-				interactionEvent.Invoke();
-			}
-		}
-	}
-
-	void OnTriggerEnter2D(Collider2D other)
-	{
-		if(other.tag == "Player")
-		{
-			inTrigger = true;
-		}
-	}
-
-	void OnTriggerExit2D(Collider2D other)
-	{
-		if(other.tag == "Player")
-		{
-			inTrigger = false;
-		}
 	}
 }

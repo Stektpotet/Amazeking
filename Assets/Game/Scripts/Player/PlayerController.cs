@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
 
 	public float idleTime = 0;
 
+	bool forcedStop = false;
+
 	//Components
 	Rigidbody2D body;
 	Animator anim;
@@ -33,18 +35,25 @@ public class PlayerController : MonoBehaviour
 		anim.SetBool("Grounded", grounded);
 		anim.SetFloat("Speed", Mathf.Abs(body.velocity.x));
 		anim.SetFloat("VelocityY", body.velocity.y);
+		if(!forcedStop)
+		{ Movement(); }
+		
+	}
 
-		Movement();
+	public void TogglePlayerInput()
+	{
+		body.velocity = Vector2.up * body.velocity.y;
+		forcedStop = !forcedStop;
 	}
 
 	void FixedUpdate()
 	{
-		FixedMovement();
+		if(!forcedStop)
+		{ FixedMovement(); }
 	}
 
 	void Movement()
 	{
-		
 		if(Input.GetKeyDown(KeyCode.Space) && grounded)
 		{
 			body.AddForce(Vector2.up * jumpForce);

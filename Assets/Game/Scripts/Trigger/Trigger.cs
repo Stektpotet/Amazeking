@@ -10,6 +10,19 @@ public class Trigger : MonoBehaviour
 	public UnityEvent onStay;
 	public UnityEvent onExit;
 
+	public void ClearEnterTrigger()
+	{
+		onEnter.RemoveAllListeners();
+	}
+	public void ClearStayTrigger()
+	{
+		onStay.RemoveAllListeners();
+	}
+	public void ClearExitTrigger()
+	{
+		onExit.RemoveAllListeners();
+	}
+
 	public void OnTriggerEnter2D(Collider2D other)
 	{
 		if(( acceptedLayers & ( 1 << other.gameObject.layer ) ) > 0)

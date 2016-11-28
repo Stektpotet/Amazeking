@@ -18,6 +18,13 @@ public class FollowAndKeepInLevelEditor : Editor
 		if(GUILayout.Button("Set Camera Size"))
         {
 			followScript.Awake();
+			for(int i = 0; i < followScript.levelAreas.Count; i++)
+			{
+				if(followScript.levelAreas[i].levelRect.Contains(followScript.player.transform.position))
+				{
+					followScript.MoveToLevelArea(i);
+				}
+			}
 			followScript.ClampCameraSize();
 			followScript.ClampCameraPos();
 		}
@@ -68,7 +75,7 @@ public static partial class HandlesUtil
 		for(int i = 0; i < handlePoints.Length; i++)
 		{
 			Vector2 p = handlePoints[i];
-			handlePoints[i] = Handles.Slider(p, p - rect.center, 0.05f, capFunc, snap);
+			handlePoints[i] = Handles.Slider(p, p - rect.center, 0.45f, capFunc, snap);
 		}
 		return new Rect(handlePoints[3].x, handlePoints[0].y, handlePoints[1].x - handlePoints[3].x, handlePoints[2].y - handlePoints[0].y);
 	}
