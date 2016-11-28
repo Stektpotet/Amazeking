@@ -7,7 +7,7 @@ public static class SaveLoadManager
 {
 	public static FileStream CreateFileStream(string fileName)
 	{
-		return = new FileStream(Application.persistentDataPath + "/"+fileName + ".hornes", FileMode.Create);
+		return new FileStream(Application.persistentDataPath + "/"+fileName + ".hornes", FileMode.Create);
 	}
 	public static void SavePlayerStats(PlayerStats stats)
 	{
