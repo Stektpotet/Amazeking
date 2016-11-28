@@ -25,14 +25,14 @@
 		Tags
 	{
 		"Queue" = "Geometry"
-		"RenderType" = "TransparentCutout"
+		"RenderType" = "Opaque"
 		"PreviewType" = "Plane"
 	}
 		LOD 500
 		Cull Off
 
 		CGPROGRAM
-#pragma surface surf Lambert vertex:vert addshadow fullforwardshadows
+#pragma surface surf Lambert vertex:vert keepalpha addshadow fullforwardshadows
 #pragma multi_compile _ PIXELSNAP_ON
 #pragma target 3.0
 

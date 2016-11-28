@@ -7,19 +7,14 @@ public class PlayerStats : ScriptableObject
 	public int jumpCount;
 	public int killCount;
 
-	public void SaveData()
+	public void LoadData(SaveLoadManager.PlayerStatsData data)
 	{
-
+		playerName = data.playerName;
+		jumpCount = data.jumpCount;
+		jumpCount = data.killCount;
 	}
-}
-[System.Serializable]
-public class PlayerStatsData
-{
-	public string playerName = "Hornes";
-	public int[] ints;
-
 	public void SaveData()
 	{
-
+		SaveLoadManager.SavePlayerStats(this);
 	}
 }

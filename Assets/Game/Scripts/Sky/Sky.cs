@@ -13,7 +13,8 @@ public class Sky : MonoBehaviour
 
 	static Color m_SkyColor;
 	public static Color skyColor { get { return m_SkyColor; } }
-	private static float xStart, distance=1, lastPercent;
+	private static float xStart, distance = 1;
+	public static float lastPercent;
 	public static float distanceX { get { return distance * lastPercent + xStart; } }
 
 	void OnValidate()
@@ -22,7 +23,6 @@ public class Sky : MonoBehaviour
 		xStart = c.bounds.min.x;
 		distance = Mathf.Max(c.bounds.size.x, 1);
 	}
-
 	public void UpdateSky(float x)
 	{
 		float percent = Mathf.Abs((xStart - x) / distance);
