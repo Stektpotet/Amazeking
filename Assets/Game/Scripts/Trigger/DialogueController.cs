@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -6,7 +8,7 @@ using UnityEngine.UI;
 public class DialogueController : MonoBehaviour
 {
 	[System.Serializable]
-	public class DialogueStage
+	public class Dialogue
 	{
 		public string name;
 		[TextArea()]
@@ -17,69 +19,110 @@ public class DialogueController : MonoBehaviour
 		public string currentText{ get { return texts[textIndex]; } }
 		public int textIndex = -1;
 
+		public UnityEvent onStartDialogueStage = new UnityEvent();
+		public UnityEvent onEndDialogueStage = new UnityEvent();
+
+		public bool AutoEnd = true;
+
+		public void StartDialogue()
+		{
+			onStartDialogueStage.Invoke();
+		}
+
+		public void EndDialogue()
+		{
+			onEndDialogueStage.Invoke();
+		}
+
 	}
 
-	public DialogueStage[] dialogueStages;
-	int dialogueStage = 0;
+	public Dialogue[] dialogueStages;
+	int dialogueIndex = 0;
+	public Dialogue dialogue { get { return dialogueStages[dialogueIndex]; } } //current dialogue
+	
+	public static float textTime = 0.05f, nextTextTime=1; //Add in settings?
 
-	public UnityEvent onStartDialogue;
-	public UnityEvent onEndDialogue;
-	public float textTime = 0.05f, nextTextTime=1;
-
-	public bool AutoEnd = true;
-
-	public GameObject bubble;
+	public GameObject textBox;
 	public Text bubbleText;
 
-
-	void Awake()
+	public void Awake()
 	{
-		onStartDialogue.AddListener(new UnityAction(ToggleVisibility));
-		onStartDialogue.AddListener(new UnityAction(NextText));
-		onEndDialogue.AddListener(new UnityAction(ToggleVisibility));
+		foreach(Dialogue d in dialogueStages)
+		{
+			d.onStartDialogueStage.AddListener(() => textBox.SetActive(true));
+			d.onStartDialogueStage.AddListener(NextText);
+			d.onEndDialogueStage.AddListener(() => textBox.SetActive(false));
+		}
 	}
+
 
 	public void StartDialogue()
 	{
-		onStartDialogue.Invoke();
+		dialogue.onStartDialogueStage.Invoke();
+	}
+
+	public void StartDialogueStage(int i)
+	{
+		dialogueIndex = i;
+		StartDialogue();
 	}
 
 	public void EndDialogue()
 	{
-		onEndDialogue.Invoke();
+		dialogue.onStartDialogueStage.Invoke();
 	}
-
+	public void EndDialogueStage(int i)
+	{
+		dialogueIndex = i;
+		EndDialogue();
+	}
 	public void ToggleVisibility()
     {
-		bubble.SetActive(!bubble.activeInHierarchy);
+		gameObject.SetActive(!gameObject.activeInHierarchy);
     }
 	public void NextStage()
 	{
-		dialogueStage++;
+		dialogueIndex++;
 	}
 	public void SetStage(int i)
 	{
-		dialogueStage = i;
+		dialogueIndex = i;
 	}
+
 	public void NextText()
 	{
 		StopAllCoroutines();
-		if(dialogueStages[dialogueStage].textIndex < dialogueStages[dialogueStage].textCount-1)
+		if(dialogue.textIndex < dialogue.textCount-1)
 		{
-			bubbleText.text = dialogueStages[dialogueStage][++dialogueStages[dialogueStage].textIndex];
+			bubbleText.text = dialogue[++dialogue.textIndex];
 			StartCoroutine(ReadText());
 		}
-		else if(AutoEnd)
+		else if(dialogue.AutoEnd)
 		{
-			EndDialogue();
+			dialogue.EndDialogue();
 		}
 	}
 	IEnumerator ReadText()
 	{
-		string s = string.Empty;
-		for(int i = 0; i < dialogueStages[dialogueStage].currentTextLength; i++)
+		string s = string.Empty, markdown;
+		Dictionary<int, string> markdownDictionary = new Dictionary<int, string>();
+
+		Match m = Regex.Match(dialogue.currentText, @"(<\w+>).+(<\/\w+>)" );
+		while(m.Success)
 		{
-			s += dialogueStages[dialogueStage].currentText[i];
+			markdownDictionary.Add(m.Index, m.Value);
+			m.NextMatch();
+		}
+		for(int i = 0; i < dialogue.currentTextLength; i++)
+		{
+			if(markdownDictionary.TryGetValue(i, out markdown))
+			{
+				s += markdown;
+				i += markdown.Length;
+			}
+			else
+			{ s += dialogue.currentText[i]; }
+			
 			bubbleText.text = s;
 			yield return new WaitForSeconds(textTime);
 		}
