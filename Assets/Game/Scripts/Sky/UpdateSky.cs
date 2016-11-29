@@ -4,6 +4,7 @@ public class UpdateSky : MonoBehaviour
 {
 	SpriteRenderer r;
 	Vector3 offset;
+	public AnimationCurve cloudColoring;
 	void Start()
 	{
 		offset = transform.position;
@@ -12,7 +13,13 @@ public class UpdateSky : MonoBehaviour
 
 	public void UpdateColor()
 	{
-		r.material.color = Sky.skyColor;
+		r.sharedMaterial.color = Sky.skyColor;
+	}
+
+	public void UpdateCloudColor()
+	{
+		Color c = Sky.skyColor;
+		r.sharedMaterial.color = Color.white - c * cloudColoring.Evaluate(Sky.distanceCoveredPercent);
 	}
 
 	public void MoveWithBackGround(float moveSpeed)
