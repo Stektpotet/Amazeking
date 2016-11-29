@@ -148,27 +148,25 @@ public class PixelPerfectCamera : MonoBehaviour {
         cam.orthographicSize = cameraSize;
     }
 
- //   // Use this for initialization
- //   void Start () {
- //       //testMethod();
- //       adjustCameraFOV();
-	//}
+	// Use this for initialization
+	void Start()
+	{
+		//testMethod();
+		adjustCameraFOV();
+	}
 
-    void OnEnable()
-    {
-        adjustCameraFOV();
-    }
+	void OnEnable()
+	{
+		adjustCameraFOV();
+	}
 
 
-    void OnValidate () {
-        maxCameraHalfWidth = Math.Max(maxCameraHalfWidth, 0.01f);
-        maxCameraHalfHeight = Math.Max(maxCameraHalfHeight, 0.01f);
-        targetCameraHalfWidth = Math.Max(targetCameraHalfWidth, 0.01f);
-        targetCameraHalfHeight = Math.Max(targetCameraHalfHeight, 0.01f);
-        adjustCameraFOV();
-    }
-	
-    public void UpdatePixlePerfectCamera()
+	void OnValidate()
+	{
+		adjustCameraFOV();
+	}
+
+	public void UpdatePixlePerfectCamera()
 	{
         if (res.width != cam.pixelWidth || res.height != cam.pixelHeight)
         {

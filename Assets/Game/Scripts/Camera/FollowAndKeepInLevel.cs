@@ -85,6 +85,7 @@ public class FollowAndKeepInLevel : MonoBehaviour
 			cam.transform.position = Vector3.Lerp(cam.transform.position, target, interpolationCurve.Evaluate(lerpTime / interpotlationTime));
 			yield return null;
 		}
+		cam.orthographicSize = targetOrthoSize;
 		pixPerfCam.maxCameraHalfHeight = cam.orthographicSize;
 		pixPerfCam.maxCameraHalfWidth = cam.orthographicSize * cam.aspect;
 		transitioning = false;
@@ -104,9 +105,9 @@ public class FollowAndKeepInLevel : MonoBehaviour
 		{
 			size = levelAreas[m_CurrentLevelArea].height * 0.5f;
 		}
-		if(cam.aspect * size * 2 > levelAreas[m_CurrentLevelArea].width)
+		if(Mathf.Pow(cam.aspect, -1) * size * 2 > levelAreas[m_CurrentLevelArea].width)
 		{
-			size = levelAreas[m_CurrentLevelArea].width * 0.25f / cam.aspect;
+			size = levelAreas[m_CurrentLevelArea].width / cam.aspect;
 		}
 		return size;
 

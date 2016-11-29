@@ -15,8 +15,12 @@ public class FollowAndKeepInLevelEditor : Editor
 	public override void OnInspectorGUI()
 	{
 		base.OnInspectorGUI();
+
+
 		if(GUILayout.Button("Set Camera Size"))
         {
+
+			EditorGUI.BeginChangeCheck();
 			followScript.Awake();
 			for(int i = 0; i < followScript.levelAreas.Count; i++)
 			{
@@ -27,7 +31,14 @@ public class FollowAndKeepInLevelEditor : Editor
 			}
 			followScript.ClampCameraSize();
 			followScript.ClampCameraPos();
+			if(EditorGUI.EndChangeCheck())
+			{
+				Undo.RecordObject(target, "Auto-aligned Camera pos & size");
+				
+			}
+			EditorUtility.SetDirty(followScript);
 		}
+		
 	}
 	void OnSceneGUI ()
 	{
