@@ -3,15 +3,16 @@ using System.Collections;
 [CreateAssetMenu(fileName = "New PlayerStats", menuName ="Player/PlayerStats")]
 public class PlayerStats : ScriptableObject
 {
-	public string playerName = "Hornes";
-	public int jumpCount;
-	public int killCount;
+	public SaveLoadManager.PlayerStatsData data;
 
-	public void LoadData(SaveLoadManager.PlayerStatsData data)
+	public void Reset()
 	{
-		playerName = data.playerName;
-		jumpCount = data.jumpCount;
-		jumpCount = data.killCount;
+		data = new SaveLoadManager.PlayerStatsData();
+	}
+
+	public void LoadData()
+	{
+		this.data = SaveLoadManager.LoadPlayerStats();
 	}
 	public void SaveData()
 	{

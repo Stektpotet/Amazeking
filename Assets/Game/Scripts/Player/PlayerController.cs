@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
 	Rigidbody2D body;
 	Animator anim;
 
+	//Stats
+	public PlayerStats stats;
+
 	//Other
 	public LayerMask groundMask;
 	public Transform groundPoint;
@@ -57,6 +60,7 @@ public class PlayerController : MonoBehaviour
 		if(Input.GetKeyDown(KeyCode.Space) && grounded)
 		{
 			body.AddForce(Vector2.up * jumpForce);
+			stats.data.JumpCount++;
 		}
 	}
 

@@ -16,7 +16,7 @@ public class DialogueController : MonoBehaviour
 		public string this[int i] { get { return texts[i]; } }
 		public int textCount { get { return texts.Length; } }
 		public int currentTextLength { get { return texts[textIndex].Length; } }
-		public string currentText{ get { return texts[textIndex]; } }
+		public string currentText{ get { return texts[textIndex]; } set { texts[textIndex] = value; } }
 		public int textIndex = -1;
 
 		public UnityEvent onStartDialogueStage = new UnityEvent();
@@ -45,28 +45,17 @@ public class DialogueController : MonoBehaviour
 	public GameObject textBox;
 	public Text bubbleText;
 
+	public PlayerStats stats;
+
 	public void Awake()
 	{
 		foreach(Dialogue d in dialogueStages)
 		{
 			d.onStartDialogueStage.AddListener(() => textBox.SetActive(true));
 			d.onStartDialogueStage.AddListener(NextText);
-			d.onEndDialogueStage.AddListener(() => textBox.SetActive(false));
 		}
 	}
 
-	public void StartDialogue(string stageName)
-	{
-		for(int i = 0; i < dialogueStages.Length; i++)
-		{
-			if(dialogueStages[i].name == stageName)
-			{
-				dialogueIndex = i;
-				StartDialogue();
-				break;
-			}
-		}
-	}
 	public void StartDialogue()
 	{
 		dialogue.onStartDialogueStage.Invoke();
@@ -80,24 +69,12 @@ public class DialogueController : MonoBehaviour
 
 	public void EndDialogue()
 	{
-		dialogue.onStartDialogueStage.Invoke();
+		dialogue.onEndDialogueStage.Invoke();
 	}
-	public void EndDialogueStage(int i)
-	{
-		dialogueIndex = i;
-		EndDialogue();
-	}
-	public void ToggleVisibility()
-    {
-		gameObject.SetActive(!gameObject.activeInHierarchy);
-    }
-	public void NextStage()
+	public void StartNextStage()
 	{
 		dialogueIndex++;
-	}
-	public void SetStage(int i)
-	{
-		dialogueIndex = i;
+		dialogue.StartDialogue();
 	}
 
 	public void NextText()
@@ -115,24 +92,38 @@ public class DialogueController : MonoBehaviour
 	}
 	IEnumerator ReadText()
 	{
-		string s = string.Empty, markdown;
-		Dictionary<int, string> markdownDictionary = new Dictionary<int, string>();
+		string s = string.Empty;
+		//Dictionary<int, string> markdownDictionary = new Dictionary<int, string>();
+		//Dictionary<int, string> specialWordsDictionary = new Dictionary<int, string>();
+		//Match m = Regex.Match(dialogue.currentText, @"(<\w+>).+(<\/\w+>)"); //may need \g
+		Match specialWords = Regex.Match(dialogue.currentText, @"\[\w*\]");
 
-		Match m = Regex.Match(dialogue.currentText, @"(<\w+>).+(<\/\w+>)" );
-		while(m.Success)
+		if(specialWords.Success)
 		{
-			markdownDictionary.Add(m.Index, m.Value);
-			m.NextMatch();
+			string fieldName = specialWords.Value.Substring(1, specialWords.Length-2);
+			object statsObj = stats.data.GetType().GetProperty(fieldName).GetValue(stats.data, null);
+			if(statsObj != null)
+			{
+				dialogue.currentText = dialogue.currentText.Replace(specialWords.Value, statsObj.ToString());
+			}
+			
 		}
+		//while(m.Success)
+		//{
+		//	markdownDictionary.Add(m.Index, m.Value);
+		//	m.NextMatch();
+		//}
 		for(int i = 0; i < dialogue.currentTextLength; i++)
 		{
-			if(markdownDictionary.TryGetValue(i, out markdown))
-			{
-				s += markdown;
-				i += markdown.Length;
-			}
-			else
-			{ s += dialogue.currentText[i]; }
+			//if(markdownDictionary.TryGetValue(i, out markdown))
+			//{
+			//	s += markdown;
+			//	i += markdown.Length;
+			//}
+			//else
+			//{
+				s += dialogue.currentText[i];
+			//}
 			
 			bubbleText.text = s;
 			yield return new WaitForSeconds(textTime);

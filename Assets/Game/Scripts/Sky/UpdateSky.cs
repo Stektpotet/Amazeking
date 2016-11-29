@@ -14,6 +14,7 @@ public class UpdateSky : MonoBehaviour
 	{
 		r.material.color = Sky.skyColor;
 	}
+
 	public void MoveWithBackGround(float moveSpeed)
 	{
 		transform.position = offset + Vector3.right * Sky.lastPercent * moveSpeed;

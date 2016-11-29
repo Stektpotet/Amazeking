@@ -9,7 +9,7 @@ public class DialogueInputHandler : MonoBehaviour
 	
 	public void ApplyName( PlayerStats stats )
 	{
-		stats.playerName = inputField.text;
+		stats.data.playerName = inputField.text;
 	}
 
 }

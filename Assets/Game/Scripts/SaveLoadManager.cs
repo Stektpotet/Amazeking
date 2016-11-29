@@ -35,7 +35,10 @@ public static class SaveLoadManager
 	{
 		public string playerName = "Hornes";
 		public int[] stats;
-		public int jumpCount { get { return stats[0]; } }
-		public int killCount { get { return stats[1]; } }
+
+		public string PlayerName { get { return playerName; } set { playerName = value; } }
+		public int JumpCount { get { return stats[0]; } set { stats[0] = value; } }
+		public int KillCount { get { return stats[1]; } set { stats[1] = value; } }
 	}
+
 }
