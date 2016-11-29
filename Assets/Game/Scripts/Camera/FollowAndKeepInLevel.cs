@@ -49,6 +49,7 @@ public class FollowAndKeepInLevel : MonoBehaviour
 
 	void Start()
 	{
+		pixPerfCam.UpdatePixlePerfectCamera();
 		ClampCameraSize();
 	}
 
@@ -56,9 +57,8 @@ public class FollowAndKeepInLevel : MonoBehaviour
 	{
 		if(!transitioning)
 		{
-			ClampCameraPos(ClampedCameraPos(cam.orthographicSize));
-			pixPerfCam.CalculatePixelPerfectCameraSize();
 			pixPerfCam.UpdatePixlePerfectCamera();
+			ClampCameraPos(ClampedCameraPos(cam.orthographicSize));
 		}
 	}
 
@@ -92,6 +92,8 @@ public class FollowAndKeepInLevel : MonoBehaviour
 	}
 	public void ClampCameraSize()
 	{
+		pixPerfCam.targetCameraHalfHeight = levelAreas[m_CurrentLevelArea].prefferedCamSize;
+		pixPerfCam.UpdatePixlePerfectCamera();
 		cam.orthographicSize = ClampedCameraSize();
 	}
 

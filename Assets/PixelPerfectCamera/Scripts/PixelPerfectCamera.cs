@@ -26,11 +26,11 @@ public class PixelPerfectCamera : MonoBehaviour {
     // Input
     public bool maxCameraHalfWidthEnabled = true;
     public bool maxCameraHalfHeightEnabled = true;
-    public float maxCameraHalfWidth = 10;
-    public float maxCameraHalfHeight = 5.0f;
+    public float maxCameraHalfWidth = 40;
+    public float maxCameraHalfHeight = 20.0f;
     public Dimension targetDimension = Dimension.Height;
-    public float targetCameraHalfWidth = 2.0f;
-    public float targetCameraHalfHeight = 1.5f;
+    public float targetCameraHalfWidth = 22.0f;
+    public float targetCameraHalfHeight = 10f;
     public bool pixelPerfect = true;
     public bool retroSnap = false;
     public float assetsPixelsPerUnit = PIXELS_PER_UNIT;
@@ -144,7 +144,7 @@ public class PixelPerfectCamera : MonoBehaviour {
         res.height = cam.pixelHeight;
         res.refreshRate = Screen.currentResolution.refreshRate;
         float cameraSize = CalculatePixelPerfectCameraSize();
-
+		Debug.Log("Resize to fit!");
         cam.orthographicSize = cameraSize;
     }
 
