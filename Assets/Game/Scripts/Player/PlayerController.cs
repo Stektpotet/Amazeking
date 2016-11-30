@@ -5,6 +5,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
 	//Properties
+	public bool punching, kicking;
 	bool facingRight = true;
 	public bool grounded = false;
 	public float maxSpeed;
@@ -23,8 +24,10 @@ public class PlayerController : MonoBehaviour
 
 	//Other
 	public LayerMask groundMask;
+	public LayerMask interactMask;
 	public Transform groundPoint;
-	public float groundRadius = 0.2f;
+	public Transform attackPoint;
+	public float groundRadius = 0.2f, attackRadius = 0.5f;
 
 	void Start()
 	{
@@ -85,4 +88,26 @@ public class PlayerController : MonoBehaviour
 		GetComponent<SpriteRenderer>().flipX = !facingRight;
 	}
 
+	public void Kick()
+	{
+		kicking = true;
+		anim.SetBool("kicking", kicking);
+	}
+	
+	public void StopPunchKick()
+	{
+		kicking = false;
+		punching = false;
+	}
+
+	public void Punch()
+	{
+		punching = true;
+		anim.SetBool("punching", punching);
+    }
+
+	public void Attack()
+	{
+		//Collider2D col = Physics2D.OverlapCircle(attackPoint , groundRadius, groundMask);
+	}
 }
