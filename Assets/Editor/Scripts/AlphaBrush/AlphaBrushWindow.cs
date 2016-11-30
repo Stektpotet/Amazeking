@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEditor;
-using System.Linq;
-using System.Collections.Generic;
+using System.IO;
 
 public class AlphaBrushWizard : ScriptableWizard
 {
@@ -26,7 +24,13 @@ public class AlphaBrushWizard : ScriptableWizard
 		wizard.mask = mask;
 	}
 	void OnWizardCreate()
-	{ }
+	{
+		string path = "Assets/Game/Textures/Blendmasks/" + mask.gameObject.name + "_blendmask";
+		if(!File.Exists(path))
+		{
+			AssetDatabase.CreateAsset(mask.maskTex, path);
+		}
+	}
 	//Texture2D[] Brushes()
 	//{
 	//	List<Texture2D> t = new List<Texture2D>();
