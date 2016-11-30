@@ -5,7 +5,7 @@ using System.IO;
 public class AlphaBrushWizard : ScriptableWizard
 {
 	string[] a = { "red", "green", "blue", "alpha" };
-
+	
 	PaintedMask mask;
 
 	void OnEnable()
@@ -26,10 +26,11 @@ public class AlphaBrushWizard : ScriptableWizard
 	void OnWizardCreate()
 	{
 		string path = "Assets/Game/Textures/Blendmasks/" + mask.gameObject.name + "_blendmask";
-		if(!File.Exists(path))
+		if(!File.Exists(Application.dataPath + "/" + path))
 		{
 			AssetDatabase.CreateAsset(mask.maskTex, path);
 		}
+		AssetDatabase.SaveAssets();
 	}
 	//Texture2D[] Brushes()
 	//{
