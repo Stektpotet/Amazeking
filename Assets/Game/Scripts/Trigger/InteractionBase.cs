@@ -12,12 +12,18 @@ public class InteractionBase : MonoBehaviour
     [SerializeField]
 	protected UnityEvent interactionEvent;
 
+	public virtual void OnDisable()
+	{
+		inTrigger = false;
+	}
+
 	void Update()
 	{
 		if(inTrigger && !interacted)
 		{
 			if(Input.GetKeyDown(KeyCode.E))
 			{
+
 				interacted = true;
 				interactionEvent.Invoke();
 			}

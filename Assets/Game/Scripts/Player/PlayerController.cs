@@ -90,24 +90,20 @@ public class PlayerController : MonoBehaviour
 
 	public void Kick()
 	{
-		kicking = true;
-		anim.SetBool("kicking", kicking);
-	}
-	
-	public void StopPunchKick()
-	{
-		kicking = false;
-		punching = false;
+		anim.Play("kick");
 	}
 
 	public void Punch()
 	{
-		punching = true;
-		anim.SetBool("punching", punching);
+		anim.Play("punch");
     }
 
 	public void Attack()
 	{
-		//Collider2D col = Physics2D.OverlapCircle(attackPoint , groundRadius, groundMask);
+		Collider2D col = Physics2D.OverlapCircle(attackPoint.position, attackRadius, interactMask);
+		if(col != null)
+		{
+			col.GetComponent<Interactable>().Attack();
+		}
 	}
 }
