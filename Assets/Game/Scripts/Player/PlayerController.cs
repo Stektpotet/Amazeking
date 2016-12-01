@@ -86,6 +86,7 @@ public class PlayerController : MonoBehaviour
 	{
 		facingRight = !facingRight;
 		GetComponent<SpriteRenderer>().flipX = !facingRight;
+		attackPoint.localPosition = new Vector3(-attackPoint.localPosition.x, attackPoint.localPosition.y);
 	}
 
 	public void Kick()
@@ -100,10 +101,17 @@ public class PlayerController : MonoBehaviour
 
 	public void Attack()
 	{
-		Collider2D col = Physics2D.OverlapCircle(attackPoint.position, attackRadius, interactMask);
+		Collider2D col = Physics2D.OverlapPoint(attackPoint.position, interactMask);
+
 		if(col != null)
-		{
+		{	
 			col.GetComponent<Interactable>().Attack();
 		}
+	}
+
+	public void OnDrawGizmos()
+	{
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireSphere(attackPoint.position, .01f);
 	}
 }

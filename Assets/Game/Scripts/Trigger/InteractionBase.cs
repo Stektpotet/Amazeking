@@ -17,7 +17,7 @@ public class InteractionBase : MonoBehaviour
 		inTrigger = false;
 	}
 
-	void Update()
+	protected void Update()
 	{
 		if(inTrigger && !interacted)
 		{
@@ -30,7 +30,7 @@ public class InteractionBase : MonoBehaviour
 		}
 	}
 
-	void OnTriggerEnter2D(Collider2D other)
+	protected void OnTriggerEnter2D(Collider2D other)
 	{
 		if(other.tag == "Player")
 		{
@@ -38,7 +38,7 @@ public class InteractionBase : MonoBehaviour
 		}
 	}
 
-	void OnTriggerExit2D(Collider2D other)
+	protected void OnTriggerExit2D(Collider2D other)
 	{
 		if(other.tag == "Player")
 		{

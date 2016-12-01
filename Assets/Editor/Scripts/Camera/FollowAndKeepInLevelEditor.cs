@@ -24,7 +24,7 @@ public class FollowAndKeepInLevelEditor : Editor
 			followScript.Awake();
 			for(int i = 0; i < followScript.levelAreas.Count; i++)
 			{
-				if(followScript.levelAreas[i].levelRect.Contains(followScript.player.transform.position))
+				if(followScript.levelAreas[i].levelRect.Contains(followScript.followTarget.transform.position))
 				{
 					followScript.MoveToLevelArea(i);
 				}

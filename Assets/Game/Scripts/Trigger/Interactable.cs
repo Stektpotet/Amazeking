@@ -16,4 +16,13 @@ public class Interactable : MonoBehaviour
 		onUse.Invoke();
 	}
 
+	public void AddForceUp(float force)
+	{
+		GetComponent<Rigidbody2D>().AddForce(force*Vector2.up);
+	}
+
+	public void AddForceRight(float force)
+	{
+		GetComponent<Rigidbody2D>().AddForce(force * Vector2.right);
+	}
 }

@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: 7860931482399c14fa668b8af78d1aa1
-timeCreated: 1480552765
+guid: 0720df322b0170842833748165cca522
+timeCreated: 1480552403
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Pillar_0
-    21300002: Pillar_1
-    21300004: Pillar_2
+    21300000: soyle_0
+    21300002: soyle_1
+    21300004: soyle_2
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -27,21 +27,21 @@ TextureImporter:
   generateCubemap: 6
   cubemapConvolution: 0
   seamlessCubemap: 0
-  textureFormat: -2
+  textureFormat: 1
   maxTextureSize: 2048
   textureSettings:
     filterMode: 0
-    aniso: 16
+    aniso: -1
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
+  spriteExtrude: 0
   spriteMeshType: 1
-  alignment: 7
-  spritePivot: {x: 0.5, y: 0}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 16
   alphaUsage: 1
@@ -54,17 +54,17 @@ TextureImporter:
   textureFormatSet: 0
   platformSettings:
   - buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
-    textureFormat: 2
-    textureCompression: 1
+    maxTextureSize: 64
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: Standalone
-    maxTextureSize: 2048
-    textureFormat: 2
-    textureCompression: 1
+    maxTextureSize: 64
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -73,41 +73,41 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pillar_0
+      name: soyle_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 16
+        y: 24
         width: 32
-        height: 48
+        height: 8
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Pillar_1
+      name: soyle_1
       rect:
         serializedVersion: 2
         x: 0
-        y: 10
+        y: 8
         width: 32
-        height: 40
+        height: 16
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Pillar_2
+      name: soyle_2
       rect:
         serializedVersion: 2
         x: 0
-        y: 1
+        y: 0
         width: 32
-        height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-[RequireComponent(typeof(Camera), typeof(RectTransform))]
+[RequireComponent(typeof(Camera))]
 public class FollowAndKeepInLevel : MonoBehaviour
 {
 	[System.Serializable]
@@ -35,7 +35,7 @@ public class FollowAndKeepInLevel : MonoBehaviour
 	public int CurrentLevelArea { get { return m_CurrentLevelArea; } }
 	bool transitioning = false;
 
-	public Transform player;
+	public Transform followTarget;
 	public Vector2 focusOffset;
 
 	private Camera cam;
@@ -62,22 +62,24 @@ public class FollowAndKeepInLevel : MonoBehaviour
 		}
 	}
 
-	public void MoveToLevelArea(int i)
+
+	public void MoveToFollowTarget(Transform t)
 	{
-		if(i != m_CurrentLevelArea || transitioning)
+		if(t != followTarget)
 		{
-			m_CurrentLevelArea = i;
-			StartCoroutine(ChangingLevelArea());
+			followTarget = t;
+			StopCoroutine("ChangingFollowTarget");
+			StartCoroutine(ChangingFollowTarget());
 		}
 	}
 
-	IEnumerator ChangingLevelArea()
+	IEnumerator ChangingFollowTarget()
 	{
 		float lerpTime = 0;
 		transitioning = true;
 		float targetOrthoSize = ClampedCameraSize();
 		Vector3 target = ClampedCameraPos(targetOrthoSize);
-		while(Vector3.Distance(cam.transform.position, target) > 0.05f)
+		while(( lerpTime / interpotlationTime ) < 1)
 		{
 			lerpTime += Time.deltaTime;
 			target = ClampedCameraPos(targetOrthoSize);
@@ -89,7 +91,38 @@ public class FollowAndKeepInLevel : MonoBehaviour
 		pixPerfCam.maxCameraHalfHeight = cam.orthographicSize;
 		pixPerfCam.maxCameraHalfWidth = cam.orthographicSize * cam.aspect;
 		transitioning = false;
-		StopCoroutine(ChangingLevelArea());
+		StopCoroutine("ChangingFollowTarget");
+	}
+
+	public void MoveToLevelArea(int i)
+	{
+		if(i != m_CurrentLevelArea)
+		{
+			m_CurrentLevelArea = i;
+			StopCoroutine("ChangingLevelArea");
+			StartCoroutine(ChangingLevelArea());
+		}
+	}
+
+	IEnumerator ChangingLevelArea()
+	{
+		float lerpTime = 0;
+		transitioning = true;
+		float targetOrthoSize = ClampedCameraSize();
+		Vector3 target = ClampedCameraPos(targetOrthoSize);
+		while((lerpTime / interpotlationTime) < 1)
+		{
+			lerpTime += Time.deltaTime;
+			target = ClampedCameraPos(targetOrthoSize);
+			cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetOrthoSize, interpolationCurve.Evaluate(lerpTime / interpotlationTime));
+			cam.transform.position = Vector3.Lerp(cam.transform.position, target, interpolationCurve.Evaluate(lerpTime / interpotlationTime));
+			yield return null;
+		}
+		cam.orthographicSize = targetOrthoSize;
+		pixPerfCam.maxCameraHalfHeight = cam.orthographicSize;
+		pixPerfCam.maxCameraHalfWidth = cam.orthographicSize * cam.aspect;
+		transitioning = false;
+		StopCoroutine("ChangingLevelArea");
 	}
 	public void ClampCameraSize()
 	{
@@ -128,8 +161,8 @@ public class FollowAndKeepInLevel : MonoBehaviour
 		float bottomDist = levelAreas[m_CurrentLevelArea].y + orthoSize;
 		float topDist = levelAreas[m_CurrentLevelArea].yMax - orthoSize;
 
-		float clampedX = Mathf.Clamp(player.transform.position.x + focusOffset.x, leftDist, rightDist);
-		float clampedY = Mathf.Clamp(player.transform.position.y + focusOffset.y, bottomDist, topDist);
+		float clampedX = Mathf.Clamp(followTarget.transform.position.x + focusOffset.x, leftDist, rightDist);
+		float clampedY = Mathf.Clamp(followTarget.transform.position.y + focusOffset.y, bottomDist, topDist);
 		return new Vector3(clampedX, clampedY, cam.transform.position.z);
 	}
 }
