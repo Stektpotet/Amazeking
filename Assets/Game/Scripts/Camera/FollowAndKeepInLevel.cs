@@ -39,17 +39,17 @@ public class FollowAndKeepInLevel : MonoBehaviour
 	public Vector2 focusOffset;
 
 	private Camera cam;
-	private PixelPerfectCamera pixPerfCam;
+	//private PixelPerfectCamera pixPerfCam;
 
 	public void Awake()
 	{
 		cam = GetComponent<Camera>();
-		pixPerfCam = GetComponent<PixelPerfectCamera>();
+		//pixPerfCam = GetComponent<PixelPerfectCamera>();
 	}
 
 	void Start()
 	{
-		pixPerfCam.UpdatePixlePerfectCamera();
+		//pixPerfCam.UpdatePixlePerfectCamera();
 		ClampCameraSize();
 	}
 
@@ -57,7 +57,7 @@ public class FollowAndKeepInLevel : MonoBehaviour
 	{
 		if(!transitioning)
 		{
-			pixPerfCam.UpdatePixlePerfectCamera();
+			//pixPerfCam.UpdatePixlePerfectCamera();
 			ClampCameraPos(ClampedCameraPos(cam.orthographicSize));
 		}
 	}
@@ -88,8 +88,8 @@ public class FollowAndKeepInLevel : MonoBehaviour
 			yield return null;
 		}
 		cam.orthographicSize = targetOrthoSize;
-		pixPerfCam.maxCameraHalfHeight = cam.orthographicSize;
-		pixPerfCam.maxCameraHalfWidth = cam.orthographicSize * cam.aspect;
+		//pixPerfCam.maxCameraHalfHeight = cam.orthographicSize;
+		//pixPerfCam.maxCameraHalfWidth = cam.orthographicSize * cam.aspect;
 		transitioning = false;
 		StopCoroutine("ChangingFollowTarget");
 	}
@@ -119,15 +119,15 @@ public class FollowAndKeepInLevel : MonoBehaviour
 			yield return null;
 		}
 		cam.orthographicSize = targetOrthoSize;
-		pixPerfCam.maxCameraHalfHeight = cam.orthographicSize;
-		pixPerfCam.maxCameraHalfWidth = cam.orthographicSize * cam.aspect;
+		//pixPerfCam.maxCameraHalfHeight = cam.orthographicSize;
+		//pixPerfCam.maxCameraHalfWidth = cam.orthographicSize * cam.aspect;
 		transitioning = false;
 		StopCoroutine("ChangingLevelArea");
 	}
 	public void ClampCameraSize()
 	{
-		pixPerfCam.targetCameraHalfHeight = levelAreas[m_CurrentLevelArea].prefferedCamSize;
-		pixPerfCam.UpdatePixlePerfectCamera();
+		//pixPerfCam.targetCameraHalfHeight = levelAreas[m_CurrentLevelArea].prefferedCamSize;
+		//pixPerfCam.UpdatePixlePerfectCamera();
 		cam.orthographicSize = ClampedCameraSize();
 	}
 
