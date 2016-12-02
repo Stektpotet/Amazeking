@@ -37,6 +37,19 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	private static AudioSource m_audioSource = null;
+	public static AudioSource audioSource
+	{
+		get
+		{
+			if(m_audioSource == null)
+			{
+				m_audioSource = instance.GetComponent<AudioSource>();
+			}
+			return m_audioSource;
+		}
+	}
+
 	private static AudioManager m_audioManager = null;
 	public static AudioManager audioManager
 	{

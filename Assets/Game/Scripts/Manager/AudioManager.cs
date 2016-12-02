@@ -20,4 +20,9 @@ public class AudioManager : MonoBehaviour
 		mixer.SetFloat("sfxVol", v);
 	}
 
+	public void PlayMusic(AudioClip clip)
+	{
+		GameManager.audioSource.clip = clip;
+		GameManager.audioSource.Play();
+	}
 }
