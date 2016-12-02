@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
@@ -29,6 +30,9 @@ public class PlayerController : MonoBehaviour
 	public Transform attackPoint;
 	public float groundRadius = 0.2f, attackRadius = 0.5f;
 
+	public UnityEvent onDie;
+	public UnityEvent onAttack;
+
 	void Start()
 	{
 		body = GetComponent<Rigidbody2D>();
@@ -37,15 +41,12 @@ public class PlayerController : MonoBehaviour
 	
 	void Update()
 	{
-
 		anim.SetBool("Grounded", grounded);
 		anim.SetFloat("Speed", Mathf.Abs(body.velocity.x));
 		anim.SetFloat("VelocityY", body.velocity.y);
 		if(!forcedStop)
 		{ Movement(); }
-		
 	}
-
 	public void TogglePlayerInput()
 	{
 		body.velocity = Vector2.up * body.velocity.y;

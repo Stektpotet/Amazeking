@@ -34,6 +34,16 @@ public class PlayerSounds : MonoBehaviour
 		nextIdleTime = Random.Range(idleWaitTimeMin, idleWaitTimeMax);
 	}
 
+	public void Die()
+	{
+		deathSounds.PlayRandomSound(ref source);
+	}
+
+	public void Attack()
+	{
+		attackSounds.PlayRandomSound(ref source);
+	}
+
 	public void Step()
 	{
 		Collider2D col = Physics2D.OverlapCircle(player.groundPoint.position, player.groundRadius, player.groundMask);
