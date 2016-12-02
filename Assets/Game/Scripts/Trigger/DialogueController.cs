@@ -69,6 +69,7 @@ public class DialogueController : MonoBehaviour
 
 	public void EndDialogue()
 	{
+		StopAllCoroutines();
 		dialogue.textIndex = -1;
 		dialogue.onEndDialogueStage.Invoke();
 	}

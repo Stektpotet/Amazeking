@@ -21,11 +21,34 @@ public class GameManager : MonoBehaviour
 
 	void Start()
 	{
-		Debug.LogWarning("Aaa");
 		levelManager.LoadLevel("Main Menu");
 	}
 
-	public LevelManager levelManager { get { return GetComponent<LevelManager>(); } }
+	private static LevelManager m_levelManager = null;
+	public static LevelManager levelManager
+	{
+		get
+		{
+			if(m_levelManager == null)
+			{
+				m_levelManager = FindObjectOfType<LevelManager>();
+			}
+			return m_levelManager;
+		}
+	}
+
+	private static AudioManager m_audioManager = null;
+	public static AudioManager audioManager
+	{
+		get
+		{
+			if(m_levelManager == null)
+			{
+				m_audioManager = FindObjectOfType<AudioManager>();
+			}
+			return m_audioManager;
+		}
+	}
 
 	public void Quit()
 	{
