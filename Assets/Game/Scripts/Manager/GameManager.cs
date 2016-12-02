@@ -19,8 +19,13 @@ public class GameManager : MonoBehaviour
 		DontDestroyOnLoad(gameObject);
 	}
 
-	public LevelManager levelManager { get { return GetComponent<LevelManager>(); } }
+	void Start()
+	{
+		Debug.LogWarning("Aaa");
+		levelManager.LoadLevel("Main Menu");
+	}
 
+	public LevelManager levelManager { get { return GetComponent<LevelManager>(); } }
 
 	public void Quit()
 	{
