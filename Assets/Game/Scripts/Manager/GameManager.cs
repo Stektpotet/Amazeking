@@ -20,4 +20,14 @@ public class GameManager : MonoBehaviour
 	}
 
 	public LevelManager levelManager { get { return GetComponent<LevelManager>(); } }
+
+
+	public void Quit()
+	{
+#if UNITY_EDITOR
+		UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+	}
 }

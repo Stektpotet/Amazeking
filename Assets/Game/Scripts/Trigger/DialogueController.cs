@@ -69,6 +69,7 @@ public class DialogueController : MonoBehaviour
 
 	public void EndDialogue()
 	{
+		dialogue.textIndex = -1;
 		dialogue.onEndDialogueStage.Invoke();
 	}
 	public void StartNextStage()
