@@ -15,4 +15,5 @@ public class Door : MonoBehaviour
 			c.enabled = false;
 		}
 	}
+
 }
