@@ -1,7 +1,8 @@
 ﻿using UnityEngine.Events;
+using UnityEngine;
 public class DoorInteraction : ScriptableInteraction {
 
-	public bool locked;
+	bool locked = true;
 	public override void Start()
 	{
 		base.Start();
@@ -9,6 +10,16 @@ public class DoorInteraction : ScriptableInteraction {
 
 	public UnityEvent isLocked;
 	public UnityEvent isOpen;
+
+	public void Unlock()
+	{
+		locked = false;
+	}
+
+	public void Lock()
+	{
+		locked = true;
+	}
 
 	protected override void Interaction()
 	{
@@ -21,5 +32,6 @@ public class DoorInteraction : ScriptableInteraction {
 		{
 			isOpen.Invoke();
 		}
+		
 	}
 }

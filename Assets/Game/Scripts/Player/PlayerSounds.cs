@@ -14,6 +14,12 @@ public class PlayerSounds : MonoBehaviour
 	[Header("Interaction")]
 	public AudioGroup interactionSounds;
 
+	[Header("Death")]
+	public AudioGroup deathSounds;
+
+	[Header("Attack")]
+	public AudioGroup attackSounds;
+
 	private AudioSource source;
 	private PlayerController player;
 

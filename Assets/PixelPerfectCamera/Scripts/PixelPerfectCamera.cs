@@ -143,8 +143,7 @@ public class PixelPerfectCamera : MonoBehaviour {
         res.width = cam.pixelWidth;
         res.height = cam.pixelHeight;
         res.refreshRate = Screen.currentResolution.refreshRate;
-        float cameraSize = CalculatePixelPerfectCameraSize();
-		Debug.Log("Resize to fit!");
+        float cameraSize = CalculatePixelPerfectCameraSize();	
         cam.orthographicSize = cameraSize;
     }
 

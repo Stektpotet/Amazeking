@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
 	public void Attack()
 	{
 		Collider2D col = Physics2D.OverlapPoint(attackPoint.position, interactMask);
-
+		
 		if(col != null)
 		{
 			col.GetComponent<Interactable>().attackFromRight = !facingRight;

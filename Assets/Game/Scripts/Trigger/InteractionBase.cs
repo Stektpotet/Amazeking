@@ -23,7 +23,6 @@ public class InteractionBase : MonoBehaviour
 		{
 			if(Input.GetKeyDown(KeyCode.E))
 			{
-
 				interacted = true;
 				interactionEvent.Invoke();
 			}
