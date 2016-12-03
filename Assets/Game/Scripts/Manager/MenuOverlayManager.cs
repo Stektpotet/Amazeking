@@ -10,7 +10,7 @@ public class MenuOverlayManager : MonoBehaviour
 	bool gameOver = false, paused = false;
 
 	public Canvas canvas; //pause canvas
-	public GameObject gameOverMenu, pauseMenu;
+	public GameObject logo ,gameOverMenu, pauseMenu, timerOverlay;
 
 	void Update()
 	{
@@ -23,7 +23,7 @@ public class MenuOverlayManager : MonoBehaviour
 	public void GameOver()
 	{
 		Time.timeScale = ( Time.timeScale == 0 ) ? 1 : 0;
-		canvas.gameObject.SetActive(true);
+		logo.SetActive(true);
 		gameOver = true;
 		gameOverMenu.SetActive(true);
 	}
@@ -31,7 +31,7 @@ public class MenuOverlayManager : MonoBehaviour
 	public void CloseGameOverMenu()
 	{
 		Time.timeScale = 1f;
-		canvas.enabled = false;
+		canvas.gameObject.SetActive(false);
 		gameOver = false;
 		gameOverMenu.SetActive(false);
 	}
@@ -42,6 +42,12 @@ public class MenuOverlayManager : MonoBehaviour
 		paused = ( Time.timeScale == 0 );
 		canvas.gameObject.SetActive(paused);
 		pauseMenu.SetActive(paused);
+		logo.SetActive(paused);
+	}
+
+	void OpenTimer()
+	{
+		timerOverlay.SetActive(true);
 	}
 
 	public void Quit()

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+	public static bool timed = false;
+
 	public static GameManager instance = null;
 	void Awake()
 	{
@@ -49,6 +51,19 @@ public class GameManager : MonoBehaviour
 			return m_menuOverlayManager;
 		}
 	}
+
+	//private TimerManager m_timer = null;
+	//public TimerManager timer
+	//{
+	//	get
+	//	{
+	//		if(m_timer == null)
+	//		{
+	//			m_timer = GetComponent<TimerManager>();
+	//		}
+	//		return m_timer;
+	//	}
+	//}
 
 	private AudioSource m_audioSource = null;
 	public AudioSource audioSource
