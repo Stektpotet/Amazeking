@@ -13,7 +13,4 @@ public class DialogueInputHandler : MonoBehaviour
 	{
 		stats.data.playerName = inputField.text;
 	}
-
-	
-
 }

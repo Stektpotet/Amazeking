@@ -6,7 +6,7 @@ using UnityEngine.Audio;
 public class AudioManager : MonoBehaviour
 {
 	public AudioMixer mixer;
-
+	
 	public void SetMasterVolume(float v)
 	{
 		mixer.SetFloat("masterVol", v);
@@ -22,7 +22,7 @@ public class AudioManager : MonoBehaviour
 
 	public void PlayMusic(AudioClip clip)
 	{
-		GameManager.audioSource.clip = clip;
-		GameManager.audioSource.Play();
+		GameManager.instance.audioSource.clip = clip;
+		GameManager.instance.audioSource.Play();
 	}
 }

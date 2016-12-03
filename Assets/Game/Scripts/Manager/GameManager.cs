@@ -24,8 +24,8 @@ public class GameManager : MonoBehaviour
 		levelManager.LoadLevel("Main Menu");
 	}
 
-	private static LevelManager m_levelManager = null;
-	public static LevelManager levelManager
+	private LevelManager m_levelManager = null;
+	public LevelManager levelManager
 	{
 		get
 		{
@@ -37,8 +37,8 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	private static AudioSource m_audioSource = null;
-	public static AudioSource audioSource
+	private AudioSource m_audioSource = null;
+	public AudioSource audioSource
 	{
 		get
 		{
@@ -50,8 +50,8 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	private static AudioManager m_audioManager = null;
-	public static AudioManager audioManager
+	private AudioManager m_audioManager = null;
+	public AudioManager audioManager
 	{
 		get
 		{

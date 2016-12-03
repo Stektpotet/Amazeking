@@ -61,6 +61,14 @@ public class PlayerController : MonoBehaviour
 
 	void Movement()
 	{
+		if(Input.GetKeyDown(KeyCode.E))
+		{
+			Kick();
+		}
+		if(Input.GetKeyDown(KeyCode.Q))
+		{
+			Punch();
+		}
 		if(Input.GetKeyDown(KeyCode.Space) && grounded)
 		{
 			body.AddForce(Vector2.up * jumpForce);

@@ -17,7 +17,7 @@ public class Sky : MonoBehaviour
 	public static float lastPercent;
 	public static float distanceX { get { return distance * lastPercent + xStart; } }
 
-	void OnValidate()
+	void Start()
 	{
 		Collider2D c = GetComponent<Collider2D>();
 		xStart = c.bounds.min.x;
