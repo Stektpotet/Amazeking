@@ -1,3 +1,4 @@
+<p align="justify">
 IMT1361 ­ Game Design ­ Assignment 3
 
 ![image alt text](http://i.imgur.com/3tsezwD.png)
@@ -6,7 +7,7 @@ Members
 
 * Stian   	15%
 
-* Halvor		25%
+* Halvor	25%
 
 * Håkon H.	15% 
 
@@ -15,6 +16,7 @@ Members
 * Christian 	15%
 
 * Håkon N.	15%
+</p>
 
 [Gameplay Video]		      [https://www.youtube.com/watch?v=KoEsu2TFOV4](https://www.youtube.com/watch?v=KoEsu2TFOV4)
 
@@ -24,51 +26,47 @@ Contents
 
 * * *
 ### Part 1:
-#### 1. Concept Document										2
-
-1.1 The Idea Of The Game										2
-
-1.2 The Genre/Type Of Game										3
-
-1.3 Other Similar Games:										3
-
-1.4 What Makes This Game Interesting/Different								4
-#### 2. Design Document											5
-2.1 - Technology Description										5
-2.1.1 - GraphicsGale											5
-2.1.2 - Adobe Photoshop CS5										5
-2.1.3 - Unity												5
-2.1.4 - Fruity Loops Studio (FL Studio)									5
-2.2 - Flow of the game											5
-2.2.1 - Game Flow - Flow Chart										7
-2.3 - Game Play Description & Game Mechanics								8
-2.3.1 - Movement and interaction									8
-2.3.2 - Items												8
-2.3.3 - Puzzle mechanics										8
-2.3.4 - Thinking											8
-2.5 - Assets												9
-2.5.1 Sprites												9
-2.5.2 Sounds												9
-#### 3. Analysis											10
-3.1 Lenses												10
-3.2 Story elements											10
-3.3 Connection to lecture content									11
+[#### 1. Concept Document](#1-concept-document)
+1.1 The Idea Of The Game
+1.2 The Genre/Type Of Game
+1.3 Other Similar Games:
+1.4 What Makes This Game Interesting/Different
+#### 2. Design Document
+2.1 - Technology Description
+2.1.1 - GraphicsGale
+2.1.2 - Adobe Photoshop CS5
+2.1.3 - Unity
+2.1.4 - Fruity Loops Studio (FL Studio)
+2.2 - Flow of the game
+2.2.1 - Game Flow - Flow Chart
+2.3 - Game Play Description & Game Mechanics
+2.3.1 - Movement and interaction
+2.3.2 - Items
+2.3.3 - Puzzle mechanics
+2.3.4 - Thinking
+2.5 - Assets
+2.5.1 Sprites												
+2.5.2 Sounds
+#### 3. Analysis
+3.1 Lenses
+3.2 Story elements
+3.3 Connection to lecture content
 * * *
 ### Part 2:
-### 1. Discussion of feature changes, and why they changed (ie discuss the design process) (2-4)	11
-1.1.1 Overall:												11
-1.1.2 Graphic:												12
-1.1.3 Programming:											12
-1.1.3.1 Tools												12
-1.1.3.2 UnityEvents											13
-1.1.3.3 Bodging												14
-1.1.3.4 Other												14
-1.2 Play testing											14
-1.3 Strengths and weaknesses:										15
-#### 2 Analysis of the game (1-2 pages)									15
-2.1 Lecture content (update of previous analysis, plus development specific connections			15
-2.2 Where appropriate which lenses are most relevant for the development				16
-2.3 In relation to what you intended to make at the beginning of the project				16
+### 1. Discussion of feature changes, and why they changed
+1.1.1 Overall:
+1.1.2 Graphic:
+1.1.3 Programming:
+1.1.3.1 Tools
+1.1.3.2 UnityEvents
+1.1.3.3 Bodging
+1.1.3.4 Other
+1.2 Play testing
+1.3 Strengths and weaknesses:
+#### 2 Analysis of the game (1-2 pages)
+2.1 Lecture content (update of previous analysis, plus development specific connections
+2.2 Where appropriate which lenses are most relevant for the development
+2.3 In relation to what you intended to make at the beginning of the project
 
 * * *
 
