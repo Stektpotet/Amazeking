@@ -24,47 +24,89 @@ Contents
 
 * * *
 ### [Assignment 3](#assignment-3-1)
+
 #### 1. [Concept Document](#1-concept-document)
+
 1.1 [The Idea Of The Game](#11-the-idea-of-the-game)
+
 1.2 [The Genre/Type Of Game](#12-the-genretype-of-game)
+
 1.3 [Other Similar Games](#13-other-similar-games)
+
 1.4 [What Makes This Game Interesting/Different](#14-what-makes-this-game-interestingdifferent)
+
 #### 2. [Design Document](#2-design-document-1)
+
 2.1 - [Technology Description](#21---technology-description)
+
 2.1.1 - [GraphicsGale](#211---graphicsgale)
+
 2.1.2 - [Adobe Photoshop CS5](#212---adobe-photoshop-cs5)
+
 2.1.3 - [Unity](#213---unity)
+
 2.1.4 - [Fruity Loops Studio (FL Studio)](#214---fruity-loops-studio-fl-studio)
+
 2.2 - [Flow of the game](#22---flow-of-the-game)
+
 2.2.1 - [Game Flow - Flow Chart](#221---game-flow---flow-chart)
+
 2.3 - [Game Play Description & Game Mechanics](#23---game-play-description--game-mechanics)
+
 2.3.1 - [Movement and interaction](#231---movement-and-interaction)
+
 2.3.2 - [Items](#232---items)
+
 2.3.3 - [Puzzle mechanics](#233---puzzle-mechanics)
+
 2.3.4 - [Thinking](#234---thinking)
+
 2.4 - [Discussion On Balance Of Scoring And Mechanics](#24---discussion-on-balance-of-scoring-and-mechanics)
+
 2.5 - [Assets](#25---assets)
+
 2.5.1 [Sprites](#251---sprites)
+
 2.5.2 [Sounds](#252---sounds)
+
 #### 3. [Analysis](#3-analysis-1)
+
 3.1 [Lenses](#31-lenses)
+
 3.2 [Story elements](#32-story-elements)
+
 3.3 [Connection to lecture content](#33-connection-to-lecture-content)
+
 * * *
+
 ### [Assignment 4](#assignment-4-1)
+
 #### 1. [Discussion of feature changes, and why they changed](#1-discussion-of-feature-changes-and-why-they-changed-1)
+
 1.1.1 [Overall](#111-overall)
+
 1.1.2 [Graphic](#112-graphic)
+
 1.1.3 [Programming](#113-programming)
+
 1.1.3.1 [Tools](#1131-tools)
+
 1.1.3.2 [UnityEvents](#1132-unityevents)
+
 1.1.3.3 [Bodging](#1133-bodging)
+
 1.1.3.4 [Other](#1134-other)
+
 1.2 [Play testing](#12-play-testing)
+
 1.3 [Strengths and weaknesses](#13-strengths-and-weaknesses)
+
 #### 2 [Analysis of the game](#2-analysis-of-the-game-1-2-pages-1)
+
 2.1 [Lecture content](#21-lecture-content)
+
 2.2 [Where appropriate which lenses are most relevant for the development](#22-where-appropriate-which-lenses-are-most-relevant-for-the-development)
+
 2.3 [In relation to what we intended to make at the beginning of the project](#23-in-relation-to-what-you-intended-to-make-at-the-beginning-of-the-project)
 
 * * *
