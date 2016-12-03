@@ -80,7 +80,7 @@ Feel of the game:
 
 #### 2.1.4 - Fruity Loops Studio (FL Studio)
 
-* FL Studio is a DAW (digital audio workstation) making it a very extensive product for this kind of project. The reason we’ll be using this is that it’s very easy to make simple tunes quickly with the default sound packs. It’s not a tool we’ll all use, but it will be used by our *composer* (Halvor) who is familiar with the use of it. It’s not free, but as our *composer* already owns the program we’ll use it.
+* FL Studio is a DAW (digital audio workstation) making it a very extensive product for this kind of project. The reason we’ll be using this is that it’s very easy to make simple tunes quickly with the default sound packs. It’s not a tool we’ll all use, but it will be used by our *composer* (Håkon) who is familiar with the use of it. It’s not free, but as our *composer* already owns the program we’ll use it.
 
 ## 2.2 - Flow of the game
 
