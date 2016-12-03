@@ -23,11 +23,50 @@ Members
 Contents
 
 * * *
+### Part 1:
+#### 1. Concept Document										2
+1.1 The Idea Of The Game										2
+1.2 The Genre/Type Of Game										3
+1.3 Other Similar Games:										3
+1.4 What Makes This Game Interesting/Different								4
+#### 2. Design Document											5
+2.1 - Technology Description										5
+2.1.1 - GraphicsGale											5
+2.1.2 - Adobe Photoshop CS5										5
+2.1.3 - Unity												5
+2.1.4 - Fruity Loops Studio (FL Studio)									5
+2.2 - Flow of the game											5
+2.2.1 - Game Flow - Flow Chart										7
+2.3 - Game Play Description & Game Mechanics								8
+2.3.1 - Movement and interaction									8
+2.3.2 - Items												8
+2.3.3 - Puzzle mechanics										8
+2.3.4 - Thinking											8
+2.5 - Assets												9
+2.5.1 Sprites												9
+2.5.2 Sounds												9
+#### 3. Analysis											10
+3.1 Lenses												10
+3.2 Story elements											10
+3.3 Connection to lecture content									11
+* * *
+### Part 2:
+### 1. Discussion of feature changes, and why they changed (ie discuss the design process) (2-4)	11
+1.1.1 Overall:												11
+1.1.2 Graphic:												12
+1.1.3 Programming:											12
+1.1.3.1 Tools												12
+1.1.3.2 UnityEvents											13
+1.1.3.3 Bodging												14
+1.1.3.4 Other												14
+1.2 Play testing											14
+1.3 Strengths and weaknesses:										15
+#### 2 Analysis of the game (1-2 pages)									15
+2.1 Lecture content (update of previous analysis, plus development specific connections			15
+2.2 Where appropriate which lenses are most relevant for the development				16
+2.3 In relation to what you intended to make at the beginning of the project				16
 
-
-[[TOC]]
-
-# * * *
+* * *
 
 
 # 1. Concept Document
@@ -60,7 +99,7 @@ The King’s maze is a puzzle-platformer/point ‘n click adventure. In this gam
 
 Feel of the game:		
 
-![image alt text](http://i.imgur.com/yP9imKP.mp4)
+![image alt text](http://i.imgur.com/qOI6gWk.gif)
 
 # 2. Design Document
 
@@ -219,6 +258,8 @@ The programming of this game can be split into three parts:
 ##### 	1.1.3.1 Tools
 
 Unity is built upon the principle of allowing the users to create their own tools. Beginning this project we saw the potential to code some small editor tools to speed up the actual world design. One of the tools/systems is a camera tool/system making tweening between level "stages" or level “targets” easy. It also made sure the view was clamped (both size and position) within the play area to only show the wanted areas of a map at any given time. This system was built to work both in runtime and edit-time. In edit-time it’s a tool as it draws custom handles and gizmos for resizing level areas visually. It also allows for quick-moving the camera to the correct position (focusing on the customly set target, being the player in most cases).
+
+![image alt text](http://i.imgur.com/Q3LvEQG.png)![image alt text](http://i.imgur.com/Cp5Wwtu.png)
 
 Another tool we made was a tool for blending textures. This wasn’t intentionally planned, but was rather a result of irritation of the stupidity of Unity sprites; by default they’re set to "clamped" wrapping mode, making the texture not repeat infinitely if you stretch it. Stretching the default sprites caused another irritation, as their UV wrapping is set to stretch with the sprites game objects, which made background walls really irritating. All this irritation caused us to look into shaders, as they in some ways were the original problem. We looked into the standard Unity shaders for sprites which are written partially in GLSL, and realized we could do a lot with their power. 
 
