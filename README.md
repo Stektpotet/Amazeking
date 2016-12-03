@@ -1,4 +1,3 @@
-<p align="justify">
 IMT1361 ­ Game Design ­ Assignment 3
 
 ![image alt text](http://i.imgur.com/3tsezwD.png)
@@ -16,7 +15,6 @@ Members
 * Christian 	15%
 
 * Håkon N.	15%
-</p>
 
 [Gameplay Video]		      [https://www.youtube.com/watch?v=KoEsu2TFOV4](https://www.youtube.com/watch?v=KoEsu2TFOV4)
 
