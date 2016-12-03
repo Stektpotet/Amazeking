@@ -23,7 +23,7 @@ Members
 Contents
 
 * * *
-### [Assignment 3](#-assignment-3)
+### [Assignment 3](#assignment-3-1)
 #### 1. [Concept Document](#1-concept-document)
 1.1 [The Idea Of The Game](#11-the-idea-of-the-game)
 1.2 [The Genre/Type Of Game](#12-the-genretype-of-game)
@@ -51,8 +51,8 @@ Contents
 3.2 [Story elements](#32-story-elements)
 3.3 [Connection to lecture content](#33-connection-to-lecture-content)
 * * *
-### [Assignment 4](#-assignment-4)
-#### 1. [Discussion of feature changes, and why they changed]()
+### [Assignment 4](#assignment-4-1)
+#### 1. [Discussion of feature changes, and why they changed](#1-discussion-of-feature-changes-and-why-they-changed-1)
 1.1.1 [Overall](#111-overall)
 1.1.2 [Graphic](#112-graphic)
 1.1.3 [Programming](#113-programming)
@@ -87,17 +87,17 @@ The King’s maze is a puzzle-platformer/point ‘n click adventure. In this gam
 
 ## 1.3 Other Similar Games:
 
-		Braid - Time-warp to make levels solvable (PC/Steam).
+Braid - Time-warp to make levels solvable (PC/Steam).
 
 ![image alt text](http://i.imgur.com/bviyD6S.jpg)
 
-    Fireboy and watergirl - Buttons, door(for additional rooms).
+Fireboy and watergirl - Buttons, door(for additional rooms).
 
 ![image alt text](http://i.imgur.com/VWr39ZA.png)
 
 ## 1.4 What Makes This Game Interesting/Different
 
-	The original puzzles are incomplete. You can only solve them by using elements that were not originally planned to be part of the puzzles. The player is not the traditional hero, he will kill peaceful beings to succeed.
+The original puzzles are incomplete. You can only solve them by using elements that were not originally planned to be part of the puzzles. The player is not the traditional hero, he will kill peaceful beings to succeed.
 
 Feel of the game:		
 
