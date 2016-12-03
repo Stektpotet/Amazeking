@@ -44,7 +44,7 @@ public class TimerManager : MonoBehaviour
 	public string TimeFormat(float time)
 	{
 		int m = Mathf.RoundToInt(time) / 60;
-		int s = (Mathf.RoundToInt(time)-m*60) - m;
+		int s = Mathf.RoundToInt(time)-m*60;
 
 		return m + "m " + s + "s";
 	}

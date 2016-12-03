@@ -7,6 +7,7 @@ public class StartTimer : MonoBehaviour
 	public void EnableTimer()
 	{
 		GameManager.timed = true;
+		TimerManager.time = 0;
 	}
 	public void DisableTimer()
 	{
