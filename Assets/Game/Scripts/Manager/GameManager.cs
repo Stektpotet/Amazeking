@@ -37,6 +37,19 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	private MenuOverlayManager m_menuOverlayManager = null;
+	public MenuOverlayManager menuOverlayManager
+	{
+		get
+		{
+			if(m_menuOverlayManager == null)
+			{
+				m_menuOverlayManager = FindObjectOfType<MenuOverlayManager>();
+			}
+			return m_menuOverlayManager;
+		}
+	}
+
 	private AudioSource m_audioSource = null;
 	public AudioSource audioSource
 	{

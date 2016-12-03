@@ -6,7 +6,6 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
 	//Properties
-	public bool punching, kicking;
 	bool facingRight = true;
 	public bool grounded = false;
 	public float maxSpeed;
@@ -15,6 +14,7 @@ public class PlayerController : MonoBehaviour
 	public float idleTime = 0;
 
 	bool forcedStop = false;
+	bool alive = true;
 
 	//Components
 	Rigidbody2D body;
@@ -44,9 +44,16 @@ public class PlayerController : MonoBehaviour
 		anim.SetBool("Grounded", grounded);
 		anim.SetFloat("Speed", Mathf.Abs(body.velocity.x));
 		anim.SetFloat("VelocityY", body.velocity.y);
+
 		if(!forcedStop)
 		{ Movement(); }
 	}
+
+	public void Die()
+	{
+		onDie.Invoke();
+	}
+
 	public void TogglePlayerInput()
 	{
 		body.velocity = Vector2.up * body.velocity.y;
@@ -110,6 +117,7 @@ public class PlayerController : MonoBehaviour
 
 	public void Attack()
 	{
+		onAttack.Invoke();
 		Collider2D col = Physics2D.OverlapPoint(attackPoint.position, interactMask);
 		
 		if(col != null)
@@ -117,11 +125,5 @@ public class PlayerController : MonoBehaviour
 			col.GetComponent<Interactable>().attackFromRight = !facingRight;
 			col.GetComponent<Interactable>().Attack();
 		}
-	}
-
-	public void OnDrawGizmos()
-	{
-		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere(attackPoint.position, .01f);
 	}
 }

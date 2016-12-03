@@ -7,6 +7,13 @@ public class LevelManager : MonoBehaviour
 	{
 		SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
 	}
+
+	public void RestartLevel()
+	{
+		GameManager.instance.menuOverlayManager.CloseGameOverMenu();
+		SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+	}
+
 	public void LoadLevel(string levelName)
 	{
 		SceneManager.LoadSceneAsync(levelName);
