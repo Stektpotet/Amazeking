@@ -25,9 +25,13 @@ Contents
 * * *
 ### Part 1:
 #### 1. Concept Document										2
+
 1.1 The Idea Of The Game										2
+
 1.2 The Genre/Type Of Game										3
+
 1.3 Other Similar Games:										3
+
 1.4 What Makes This Game Interesting/Different								4
 #### 2. Design Document											5
 2.1 - Technology Description										5
