@@ -101,7 +101,7 @@ Contents
 
 1.3 [Strengths and weaknesses](#13-strengths-and-weaknesses)
 
-#### 2 [Analysis of the game](#2-analysis-of-the-game-1-2-pages-1)
+#### 2 [Analysis of the game](#2-analysis-of-the-game-1)
 
 2.1 [Lecture content](#21-lecture-content)
 
