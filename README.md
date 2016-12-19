@@ -25,7 +25,7 @@ Contents
 * * *
 ### [Assignment 3](#assignment-3-1)
 
-#### 1. [Concept Document](#1-concept-document)
+#### 1. [Concept Document](#1-concept-document-1)
 
 1.1 [The Idea Of The Game](#11-the-idea-of-the-game)
 
@@ -283,7 +283,7 @@ As it’s only the first few levels we have implemented yet there isn’t many c
 
 The most important that we learned from a lecture regarding puzzle games was to look at other good and bad games. We did this early in the process and we could see what makes a bad puzzle game. We also included some mechanics from games we thought were good and what we would like to have in our game. We also took note of the graph showing how difficult the puzzles should be in that there should be a spike, and flatten out then another spike.
 
-### Assignment 3
+### Assignment 4
 
 ## 1. Discussion of feature changes, and why they changed
 
