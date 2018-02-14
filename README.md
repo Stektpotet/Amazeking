@@ -16,9 +16,9 @@ Members
 
 * Håkon N.	15%
 
-[Gameplay Video]		      [https://www.youtube.com/watch?v=KoEsu2TFOV4](https://www.youtube.com/watch?v=KoEsu2TFOV4)
+![Gameplay Video](https://www.youtube.com/watch?v=KoEsu2TFOV4)
 
-[Executable & Source Code]    [https://github.com/Stektpotet/Amazeking/releases/tag/1.0](https://github.com/Stektpotet/Amazeking/releases/tag/1.0)
+[Executable & Source Code](https://github.com/Stektpotet/Amazeking/releases/tag/1.0)
 
 Contents
 
